@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>Backup & Save Utility</title>
+    <link rel="stylesheet" href="./styles.css"/>
+  </head>
+  <body>
+    <!-- Title -->
+    <h1>Backup & Save Utility</h1>
+
+    <!-- Backup Section -->
+    <h2>Backup</h2>
+    <p>Enter folder to backup</p>
+    <p>Enter location to save backups</p>
+    <p>How often do you want to backup:</p>
+    <p>Number of backups to keep:</p>
+
+    <!-- Snapshot Section -->
+    <h2>Snapshot</h2>
+    <p>Enter folder to snapshot</p>
+    <p>Enter location to save snapshots</p>
+    <p>Enter hotkey to snapshot</p>
+    <p>Enter snapshot name, or make it pop up the windows explorer window</p>
+
+    <!-- Activation Buttons -->
+    <!-- Backup Button -->
+    <button>Start Periodic Backup</button>
+    <!-- Snapshot -->
+    <button>Snapshot</button>
+
+    <!-- Profile Section -->
+    <p>Profiles</p>
+    <!-- Save profile -->
+    <button>Save a profile</button>
+    <!-- Load profile -->
+    <button>Load a profile</button>
+
+    <p id="info">This text will be changed</p>
+  </body>
+  <script src="./renderer.js"></script>
+</html>
