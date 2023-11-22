@@ -11,38 +11,62 @@
       content="default-src 'self'; script-src 'self'"
     />
     <title>Backup & Save Utility</title>
+    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="./styles.css"/>
   </head>
   <body>
     <!-- Title -->
-    <h1>Backup & Save Utility</h1>
+    <header>
+      <h1 class="header-title">Backup & Save Utility</h1>
+    </header>
+   
 
-    <!-- Backup Section -->
-    <h2>Backup</h2>
-    <p>Choose folder to backup</p>
-    <p>Choose location to save backups</p>
-    <p>How often do you want to backup (mins):</p>
-    <p>Number of backups to keep:</p>
+    <main>
+      <!-- Backup Section -->
+      <div class="backup-section section">
+        <h2 class="backup-title section-title">Backup</h2>
+        <p>Choose folder to backup</p>
+        <input id="backup-folder-path-box" type="text" placeholder="Type/Paste the filepath">
+        <input id="backup-folder-path-choose" type="file" webkitdirectory>
+        <p>Choose location to save backups</p>
+        <input id="backup-save-folder-path-box" type="text" placeholder="Type/Paste the filepath">
+        <input id="backup-save-folder-path-choose" type="file" webkitdirectory>
+        <p>How often do you want to backup (mins):</p>
+        <input id="backup-time" type="number" placeholder="10">
+        <p>Number of backups to keep:</p>
+        <input id="backup-number" type="number" placeholder="2">
+        
+        <!-- Backup Button -->
+        <button class="button">Start Periodic Backup</button>
+      </div>
+      
+      <!-- Snapshot Section -->
+      <div class="snapshot-section section">
+        <h2 class="snapshot-title section-title">Snapshot</h2>
+        <p>Choose folder to snapshot</p>
+        <input id="snapshot-folder-path-box" type="text" placeholder="Type/Paste the filepath">
+        <input id="snapshot-folder-path-choose" type="file" webkitdirectory>
+        <p>Choose location to save snapshots</p>
+        <input id="snapshot-save-folder-path-box" type="text" placeholder="Type/Paste the filepath">
+        <input id="snapshot-save-folder-path-choose" type="file" webkitdirectory>
+        <p>Choose hotkey to snapshot:</p>
+        <input id="snapshot-hotkey-box" type="text" placeholder="Alt + =">
+        <p>Choose snapshot name:</p>
+        <input id="snapshot-hotkey-box" type="text" placeholder="Folder Name">
     
-    <!-- Backup Button -->
-    <button>Start Periodic Backup</button>
-
-    <!-- Snapshot Section -->
-    <h2>Snapshot</h2>
-    <p>Choose folder to snapshot</p>
-    <p>Choose location to save snapshots</p>
-    <p>Choose hotkey to snapshot:</p>
-    <p>Choose snapshot name:</p>
-
-    <!-- Snapshot Button -->
-    <button>Snapshot</button>
-
-    <!-- Profile Section -->
-    <p>Profiles</p>
-    <!-- Save profile -->
-    <button>Save a profile</button>
-    <!-- Load profile -->
-    <button>Load a profile</button>
+        <!-- Snapshot Button -->
+        <button class="button">Snapshot</button>
+      </div>
+  
+      <!-- Profile Section -->
+      <div class="profile-seciton section">
+        <h2 class="profile-title section-title">Profiles</h2>
+        <!-- Save profile -->
+        <button class="button">Save a profile</button>
+        <!-- Load profile -->
+        <button class="button">Load a profile</button>
+      </div>
+    </main>
 
     <p id="info">This text will be changed</p>
   </body>

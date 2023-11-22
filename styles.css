@@ -1,5 +1,5 @@
 :root {
-    --bg-color: #323437;
+    --bg-color: #3b3d41;
     --main-color: #e2b714;
     --caret-color: #e2b714;
     --sub-color: #646669;
@@ -13,7 +13,35 @@
 
 
 body {
-    background: var(--bg-color);
+    background: var(--sub-alt-color);
     color: var(--text-color);
     font-family: sans-serif;
+    padding: 0.25em;
+}
+
+.header-title {
+/* padding: 0.25em 0.1em; */
+margin: 0.1em 0 0.25em 0;
+}
+
+.section {
+    /* border: var(--sub-color) solid 0.2em; */
+    border-radius: 1em;
+    padding: 1em;
+    margin-bottom: 0.5em;
+    background: var(--bg-color);
+}
+
+.section-title {
+    margin: 0 0;
+}
+
+.button {
+    padding: 0.5em;
+    background: var(--sub-alt-color);
+    color: var(--text-color);
+    border-radius: 0.25em;
+    border: transparent;
+    font-size: 1em;
+    font-weight: 600;
 }
