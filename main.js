@@ -2,15 +2,6 @@
 const { app, BrowserWindow, dialog, ipcMain } = require('electron')
 const path = require('node:path')
 
-// ! Placeholder
-// async function handleDirectoryOpen () {
-//   const { canceled, filePaths } = await dialog.showOpenDialog()
-//   if (!canceled) {
-//     console.log(filePaths)
-//     return filePaths[0]
-//   }
-// }
-
 // * Create Main Program Window
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -34,6 +25,25 @@ const createWindow = () => {
     }
   })
 
+  //TODO this function needs to be given the filepaths from the different html element innertexts
+  // button pressed
+  // capture innertext of snapshot name
+  // capture innertext of file path
+  // modify file path by adding snapshot name to end 
+  // actually copy the files
+  // alert user that snapshot has been saved
+  ipcMain.handle('saveSnapshot', async (event, snapshotParams) => {
+    // console.log(event)
+    console.log(snapshotParams)
+    const params = snapshotParams
+    
+  })
+  // ipcMain.on('snapshot', async (event, arg) => {
+  //   const result = await arg
+  //   console.log('directories selected', event)
+  //   console.log('directories selected', result)
+  // })
+
 
   // TODO
   // function that starts and stops backup, and does something every given minutes
@@ -45,12 +55,6 @@ const createWindow = () => {
     // ipcMain.handle()
 
 
-    // button pressed
-    // capture snapshot name
-    // capture file path
-    // modify file path
-    // actually copy the files
-    // alert user that snapshot has been saved
 
   win.loadFile('index.html')
 }

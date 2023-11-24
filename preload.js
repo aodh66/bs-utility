@@ -11,5 +11,14 @@ contextBridge.exposeInMainWorld('versions', {
 
 // * Choose Directory Dialogues (File Explorer Windows)
 contextBridge.exposeInMainWorld('myAPI', {
-  selectFolder: () => ipcRenderer.invoke('dialog:openDirectory')
+  selectFolder: () => ipcRenderer.invoke('dialog:openDirectory'),
+ saveSnapshot: (snapshotParams) => ipcRenderer.invoke('saveSnapshot', snapshotParams), // TODO this needs to return the name of the snapshot, maybe also the status of if the save was successful
 })
+
+// process.once('loaded', () => {
+//   window.addEventListener('message', evt => {
+//     if (evt.data.type === 'snapshot') {
+//       ipcRenderer.send(evt.data)
+//     }
+//   })
+// })

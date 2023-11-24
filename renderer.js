@@ -7,6 +7,7 @@ information.innerText = `This app is using Chrome (v${versions.chrome()}), Node.
 const folderBtn = document.getElementById('backup-folder-path-btn')
 const folderPathElement = document.getElementById('folderPath')
 
+
 // Choose folder to backup Event Handling
 folderBtn.addEventListener('click', async () => {
   const folderPath = await window.myAPI.selectFolder()
@@ -33,19 +34,56 @@ const backupBtn = document.getElementById('backup-btn')
 
 // * ============================== Snapshot Section ==============================
 // Snapshot Elements
-const snapshotBtn = document.getElementById('snapshot-save-path-btn')
+const snapshotPathBtn = document.getElementById('snapshot-save-path-btn')
 const snapshotPathElement = document.getElementById('snapshotSavePath')
 const snapshotMessageElement = document.getElementById('snapshotMessage')
 const snapshotHotkeyElement = document.getElementById('snapshotHotkey')
+const snapshotBtn = document.getElementById('snapshotBtn')
 
 // Snapshot save location Event Handling
-snapshotBtn.addEventListener('click', async () => {
+snapshotPathBtn.addEventListener('click', async () => {
   const snapshotPath = await window.myAPI.selectFolder()
   snapshotPathElement.innerText = snapshotPath
 })
 
 // TODO
+// when snapshot button pressed
+// function getSnapshotParams() {
+//   const snapshotName = document.getElementById('snapshot-name-box').value
+//   const snapshotParams = {
+//     type: 'snapshot',
+//     folderPath: folderPathElement.innerText,
+//     savePath: snapshotPathElement.innerText,
+//     snapshotName: snapshotName,    
+//   }
+//   return snapshotParams
+// }
 
+
+snapshotBtn.addEventListener('click', async () => {
+  // get paths and filenames
+  const snapshotName = document.getElementById('snapshot-name-box').value
+  const snapshotParams = {
+    type: 'snapshot',
+    folderPath: folderPathElement.innerText,
+    savePath: snapshotPathElement.innerText,
+    snapshotName: snapshotName,    
+  }
+  console.log(snapshotParams)
+  // window.postMessage(snapshotParams)
+  const status = window.myAPI.saveSnapshot(snapshotParams)
+  // if(status === true) {
+  //   snapshotMessageElement.innerText = `${snapshotName} Saved`
+  // } else
+  // if(status === false) {
+  //   snapshotMessageElement.innerText = `Error Saving Snapshot`
+  // }
+  
+  // const snapshotName = await window.myAPI.saveSnapshot()
+  // snapshotMessageElement.innerText = `${snapshotName} Saved`
+})
+//  wait for notice from main, that save has happened
+//  then display message that snapshot has been saved by changing snapshotMessageElement.innertext
 
 
 
@@ -53,3 +91,4 @@ snapshotBtn.addEventListener('click', async () => {
 
 // * ============================== Profile Section ==============================
 // TODO
+// Maybe just open the full dialogue to save a file for profiles and then load the same file with the full window dialogue
