@@ -1,6 +1,7 @@
 // * Imports
 const { app, BrowserWindow, dialog, ipcMain } = require('electron')
 const path = require('node:path')
+const fs = require('node:fs')
 
 // * Create Main Program Window
 const createWindow = () => {
@@ -36,7 +37,17 @@ const createWindow = () => {
     // console.log(event)
     console.log(snapshotParams)
     const params = snapshotParams
-    
+    const backupPath = snapshotParams.folderPath
+    const savePath = snapshotParams.savePath + '\\' +snapshotParams.snapshotName
+    console.log(savePath)
+
+    fs.cp(backupPath, savePath, { recursive: true }, (err) => {
+      if (err) {
+        throw err
+      } else{
+        console.log('Copied!');
+      }
+  });
   })
   // ipcMain.on('snapshot', async (event, arg) => {
   //   const result = await arg
