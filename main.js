@@ -1,5 +1,5 @@
 // * Imports
-const { app, BrowserWindow, dialog, ipcMain } = require('electron')
+const { app, BrowserWindow, dialog, ipcMain, globalShortcut } = require('electron')
 const path = require('node:path')
 const fs = require('node:fs')
 
@@ -34,18 +34,22 @@ const createWindow = () => {
   // actually copy the files
   // alert user that snapshot has been saved
   ipcMain.handle('saveSnapshot', async (event, snapshotParams) => {
+    // ! Debug
     // console.log(event)
-    console.log(snapshotParams)
-    const params = snapshotParams
+    // console.log(snapshotParams)
+    // ! Maybe unneeded
+    // const params = snapshotParams
     const backupPath = snapshotParams.folderPath
     const savePath = snapshotParams.savePath + '\\' +snapshotParams.snapshotName
-    console.log(savePath)
+        // ! Debug
+    // console.log(savePath)
 
 fs.cp(backupPath, savePath, { recursive: true }, (err) => {
       if (err) {
         throw err
       } else{
-        console.log(`Copied ${backupPath} to ${savePath}`)
+            // ! Debug
+        // console.log(`Copied ${backupPath} to ${savePath}`)
         win.webContents.send('mainResponse', true)
       }
   })
@@ -57,6 +61,12 @@ fs.cp(backupPath, savePath, { recursive: true }, (err) => {
   //   console.log('directories selected', event)
   //   console.log('directories selected', result)
   // })
+
+  // TODO let the user set a shortcut, then slap the entire above function in here as well, or let them call it through the preload or something
+  globalShortcut.register('Alt+CommandOrControl+I', () => {
+        // ! Debug
+    console.log('Electron loves global shortcuts!')
+  })
 
 
   // TODO

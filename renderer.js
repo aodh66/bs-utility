@@ -38,6 +38,8 @@ const snapshotPathBtn = document.getElementById('snapshot-save-path-btn')
 const snapshotPathElement = document.getElementById('snapshotSavePath')
 const snapshotMessageElement = document.getElementById('snapshotMessage')
 const snapshotHotkeyElement = document.getElementById('snapshotHotkey')
+const snapshotHotkeyBtn = document.getElementById('snapshotHotkeyBtn')
+const snapshotHotkeyMessageElement = document.getElementById('snapshotHotkeyMessage')
 const snapshotBtn = document.getElementById('snapshotBtn')
 
 // Snapshot save location Event Handling
@@ -58,7 +60,8 @@ snapshotBtn.addEventListener('click', async () => {
     type: 'snapshot',
     folderPath: folderPathElement.innerText,
     savePath: snapshotPathElement.innerText,
-    snapshotName: snapshotName,    
+    snapshotName: snapshotName,
+    snapshotHotkey: snapshotHotkeyElement
   }
   // ! Debug
   // console.log(snapshotParams)

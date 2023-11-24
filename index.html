@@ -28,15 +28,15 @@
           chosen backup folder. In the documentation, tell people to make a backup folder and 
           name it, as the backups themselves will simply be named backup# -->
         <h2 class="backup-title section-title">Backup</h2>
-        <p>Chosen Folder: <strong id="folderPath"></strong></p>
-        <button type="button" id="backup-folder-path-btn">Choose a folder to backup</button>
+        <p>Folder to Backup: <strong id="folderPath"></strong></p>
+        <button type="button" id="backup-folder-path-btn">Choose folder to backup</button>
 
-        <p>Chosen Backup Location: <strong id="folderSavePath"></strong></p>
+        <p>Backup Location: <strong id="folderSavePath"></strong></p>
         <button type="button" id="backup-folder-save-path-btn">Choose a location to save backups</button>
 
-        <p>TODO How often do you want to backup (mins):</p>
+        <p>TODO Backup Frequency (mins):</p>
         <input id="backup-time" type="number" placeholder="10">
-        <p>TODO Number of backups to keep:</p>
+        <p>TODO Number of Backups:</p>
         <input id="backup-number" type="number" placeholder="2">
         
         <!-- Backup Button -->
@@ -52,8 +52,10 @@
 
         <!-- TODO -->
         <p>TODO Choose hotkey to snapshot:</p>
-        <input id="snapshot-hotkey-box" type="text" placeholder="Alt + =">
-        <p>TODO Choose snapshot name:</p>
+        <input id="snapshot-hotkey-box" type="text" placeholder="Ctrl+0">
+        <button class="button" id="snapshotHotkeyBtn">Save Hotkey</button>
+        <p><strong id="snapshotHotkeyMessage"></strong></p>
+        <p>Snapshot name:</p>
         <input id="snapshot-name-box" type="text" placeholder="Snapshot Name">
     
         <!-- Snapshot Button -->
