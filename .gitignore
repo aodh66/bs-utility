@@ -130,5 +130,5 @@ dist
 .pnp.*
 
 # project test folders
-.backupreceptacle
-.backupseekfolder
+.donator
+.receptacle
