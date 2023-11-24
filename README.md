@@ -18,8 +18,14 @@ The intent of this project is to be lightweight and simple. Despite the tongue i
 
 ## Potential future features
 - Light theme
-- Cross platform compatibilty/mac and linux versions
+- Cross platform compatibility/mac and linux versions
 
 ## Installation
 
 ## Usage Instructions
+
+## Goals List
+1. get snapshot button working
+2. snapshot hotkey
+3. backup
+4. config saving

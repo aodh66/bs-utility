@@ -11,7 +11,7 @@
       content="default-src 'self'; script-src 'self'"
     />
     <title>Backup & Save Utility</title>
-    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="./normalize.css">
     <link rel="stylesheet" href="./styles.css"/>
   </head>
   <body>
@@ -24,16 +24,19 @@
     <main>
       <!-- Backup Section -->
       <div class="backup-section section">
+        <!-- this will take the files from the chosen folder and we will place them inside the 
+          chosen backup folder. In the documentation, tell people to make a backup folder and 
+          name it, as the backups themselves will simply be named backup# -->
         <h2 class="backup-title section-title">Backup</h2>
-        <p>Choose folder to backup</p>
-        <input id="backup-folder-path-box" type="text" placeholder="Type/Paste the filepath">
-        <input id="backup-folder-path-choose" type="file" webkitdirectory>
-        <p>Choose location to save backups</p>
-        <input id="backup-save-folder-path-box" type="text" placeholder="Type/Paste the filepath">
-        <input id="backup-save-folder-path-choose" type="file" webkitdirectory>
-        <p>How often do you want to backup (mins):</p>
+        <p>Chosen Folder: <strong id="folderPath"></strong></p>
+        <button type="button" id="backup-folder-path-btn">Choose a folder to backup</button>
+
+        <p>Chosen Backup Location: <strong id="folderSavePath"></strong></p>
+        <button type="button" id="backup-folder-save-path-btn">Choose a location to save backups</button>
+
+        <p>TODO How often do you want to backup (mins):</p>
         <input id="backup-time" type="number" placeholder="10">
-        <p>Number of backups to keep:</p>
+        <p>TODO Number of backups to keep:</p>
         <input id="backup-number" type="number" placeholder="2">
         
         <!-- Backup Button -->
@@ -43,16 +46,14 @@
       <!-- Snapshot Section -->
       <div class="snapshot-section section">
         <h2 class="snapshot-title section-title">Snapshot</h2>
-        <p>Choose folder to snapshot</p>
-        <input id="snapshot-folder-path-box" type="text" placeholder="Type/Paste the filepath">
-        <input id="snapshot-folder-path-choose" type="file" webkitdirectory>
-        <p>Choose location to save snapshots</p>
-        <input id="snapshot-save-folder-path-box" type="text" placeholder="Type/Paste the filepath">
-        <input id="snapshot-save-folder-path-choose" type="file" webkitdirectory>
-        <p>Choose hotkey to snapshot:</p>
+
+        <p>Snapshot Backup Location: <strong id="snapshotSavePath"></strong></p>
+        <button type="button" id="snapshot-save-path-btn">Choose a location to save snapshots</button>
+
+        <p>TODO Choose hotkey to snapshot:</p>
         <input id="snapshot-hotkey-box" type="text" placeholder="Alt + =">
-        <p>Choose snapshot name:</p>
-        <input id="snapshot-hotkey-box" type="text" placeholder="Folder Name">
+        <p>TODO Choose snapshot name:</p>
+        <input id="snapshot-hotkey-box" type="text" placeholder="Snapshot Name">
     
         <!-- Snapshot Button -->
         <button class="button">Snapshot</button>
