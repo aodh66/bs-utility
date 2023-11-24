@@ -1,7 +1,8 @@
+// * Imports
 const { app, BrowserWindow, dialog, ipcMain } = require('electron')
 const path = require('node:path')
-// const {dialog, ipcMain} from 'electron'
 
+// ! Placeholder
 // async function handleDirectoryOpen () {
 //   const { canceled, filePaths } = await dialog.showOpenDialog()
 //   if (!canceled) {
@@ -10,6 +11,7 @@ const path = require('node:path')
 //   }
 // }
 
+// * Create Main Program Window
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
@@ -33,7 +35,7 @@ const createWindow = () => {
   })
 
 
-  
+  // TODO
   // function that starts and stops backup, and does something every given minutes
     // function that backs up a file based on the return variables of stuff passed through by the above function?
 
@@ -42,9 +44,19 @@ const createWindow = () => {
     // function to capture the name designated for the snapshot folder
     // ipcMain.handle()
 
+
+    // button pressed
+    // capture snapshot name
+    // capture file path
+    // modify file path
+    // actually copy the files
+    // alert user that snapshot has been saved
+
   win.loadFile('index.html')
 }
 
+// * MAC
+// * Create new main window when clicked on Mac
 app.whenReady().then(() => {
   createWindow()
 
@@ -55,6 +67,8 @@ app.whenReady().then(() => {
   })
 })
 
+// * Universal
+// * Close app when exited, sleep on Mac
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()

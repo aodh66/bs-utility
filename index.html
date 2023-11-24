@@ -15,16 +15,16 @@
     <link rel="stylesheet" href="./styles.css"/>
   </head>
   <body>
-    <!-- Title -->
+    <!-- * Title -->
     <header>
       <h1 class="header-title">Backup & Save Utility</h1>
     </header>
    
 
     <main>
-      <!-- Backup Section -->
+      <!-- * Backup Section -->
       <div class="backup-section section">
-        <!-- this will take the files from the chosen folder and we will place them inside the 
+        <!--! this will take the files from the chosen folder and we will place them inside the 
           chosen backup folder. In the documentation, tell people to make a backup folder and 
           name it, as the backups themselves will simply be named backup# -->
         <h2 class="backup-title section-title">Backup</h2>
@@ -40,16 +40,17 @@
         <input id="backup-number" type="number" placeholder="2">
         
         <!-- Backup Button -->
-        <button class="button">Start Periodic Backup</button>
+        <button type="button" class="button" id="backup-btn">Start Periodic Backup</button>
       </div>
       
-      <!-- Snapshot Section -->
+      <!-- * Snapshot Section -->
       <div class="snapshot-section section">
         <h2 class="snapshot-title section-title">Snapshot</h2>
 
         <p>Snapshot Backup Location: <strong id="snapshotSavePath"></strong></p>
         <button type="button" id="snapshot-save-path-btn">Choose a location to save snapshots</button>
 
+        <!-- TODO -->
         <p>TODO Choose hotkey to snapshot:</p>
         <input id="snapshot-hotkey-box" type="text" placeholder="Alt + =">
         <p>TODO Choose snapshot name:</p>
@@ -57,18 +58,23 @@
     
         <!-- Snapshot Button -->
         <button class="button">Snapshot</button>
+        <p><strong id="snapshotMessage"></strong></p>
       </div>
   
-      <!-- Profile Section -->
+              <!-- TODO -->
+      <!-- * Profile Section -->
       <div class="profile-seciton section">
         <h2 class="profile-title section-title">Profiles</h2>
+
         <!-- Save profile -->
         <button class="button">Save a profile</button>
+
         <!-- Load profile -->
         <button class="button">Load a profile</button>
       </div>
     </main>
 
+    <!-- ! Placeholder  -->
     <p id="info">This text will be changed</p>
   </body>
   <script src="./renderer.js"></script>
