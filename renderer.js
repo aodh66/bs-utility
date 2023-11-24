@@ -46,20 +46,11 @@ snapshotPathBtn.addEventListener('click', async () => {
   snapshotPathElement.innerText = snapshotPath
 })
 
-// TODO
+// TODO define hotkey for snapshot
+const hotkey = 'test'
+
+
 // when snapshot button pressed
-// function getSnapshotParams() {
-//   const snapshotName = document.getElementById('snapshot-name-box').value
-//   const snapshotParams = {
-//     type: 'snapshot',
-//     folderPath: folderPathElement.innerText,
-//     savePath: snapshotPathElement.innerText,
-//     snapshotName: snapshotName,    
-//   }
-//   return snapshotParams
-// }
-
-
 snapshotBtn.addEventListener('click', async () => {
   // get paths and filenames
   const snapshotName = document.getElementById('snapshot-name-box').value
@@ -69,25 +60,38 @@ snapshotBtn.addEventListener('click', async () => {
     savePath: snapshotPathElement.innerText,
     snapshotName: snapshotName,    
   }
-  console.log(snapshotParams)
-  // window.postMessage(snapshotParams)
-  const status = window.myAPI.saveSnapshot(snapshotParams)
-  // if(status === true) {
-  //   snapshotMessageElement.innerText = `${snapshotName} Saved`
-  // } else
-  // if(status === false) {
-  //   snapshotMessageElement.innerText = `Error Saving Snapshot`
-  // }
-  
-  // const snapshotName = await window.myAPI.saveSnapshot()
-  // snapshotMessageElement.innerText = `${snapshotName} Saved`
+  // ! Debug
+  // console.log(snapshotParams)
+
+  //! Simple response method
+  // call snapshot function in main and await a positive response
+  const status = await window.myAPI.saveSnapshot(snapshotParams)
+  // console.log(`return ${status}`)
+
+  // on positive response, display message to the user on save status
+  if(status === true) {
+      // ! Debug
+    // console.log('less consistent true')
+    snapshotMessageElement.innerText = `${snapshotName} Saved`
+  } else {
+      // ! Debug
+    // console.log('less consistent false')
+    snapshotMessageElement.innerText = `Error Saving Snapshot`
+  }
+
+  // ! Main to Renderer message method
+  // Collect response from main on whether the snapshot has been saved
+  // Display that status to the user
+// window.myAPI.mainResponse((_event, value) => {
+//   // ! Debug
+//     // console.log(`windowapimessageresponse ${value}`)
+//     if(value === true) {
+//       snapshotMessageElement.innerText = `${snapshotName} Saved`
+//     } else {
+//       snapshotMessageElement.innerText = `Error Saving Snapshot`
+//     }
+//   })
 })
-//  wait for notice from main, that save has happened
-//  then display message that snapshot has been saved by changing snapshotMessageElement.innertext
-
-
-
-// Backup Start Button and Snapshot button would be render > main > render
 
 // * ============================== Profile Section ==============================
 // TODO

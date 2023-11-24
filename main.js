@@ -41,13 +41,16 @@ const createWindow = () => {
     const savePath = snapshotParams.savePath + '\\' +snapshotParams.snapshotName
     console.log(savePath)
 
-    fs.cp(backupPath, savePath, { recursive: true }, (err) => {
+fs.cp(backupPath, savePath, { recursive: true }, (err) => {
       if (err) {
         throw err
       } else{
-        console.log('Copied!');
+        console.log(`Copied ${backupPath} to ${savePath}`)
+        win.webContents.send('mainResponse', true)
       }
-  });
+  })
+  // ! Simple way to return true
+    return true
   })
   // ipcMain.on('snapshot', async (event, arg) => {
   //   const result = await arg

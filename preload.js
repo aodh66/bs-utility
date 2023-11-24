@@ -11,8 +11,9 @@ contextBridge.exposeInMainWorld('versions', {
 
 // * Choose Directory Dialogues (File Explorer Windows)
 contextBridge.exposeInMainWorld('myAPI', {
-  selectFolder: () => ipcRenderer.invoke('dialog:openDirectory'),
- saveSnapshot: (snapshotParams) => ipcRenderer.invoke('saveSnapshot', snapshotParams), // TODO this needs to return the name of the snapshot, maybe also the status of if the save was successful
+  selectFolder: () => ipcRenderer.invoke('dialog:openDirectory'), // Opens a windows explorer folder select window, then sends the results object from Renderer to Main. Main sends them back to Renderer.
+  saveSnapshot: (snapshotParams) => ipcRenderer.invoke('saveSnapshot', snapshotParams), // Takes the snapshot file path, receptacle filepath, desired folder name, and sends them from Renderer to Main. Main sends back a boolean on whether it copied the directory.
+  mainResponse: (mainResponse) => ipcRenderer.on('mainResponse', mainResponse) // ! Sends a value from Main to Renderer through the saveResponse channel (intended instead of the boolean, but can be used for other things)
 })
 
 // process.once('loaded', () => {
