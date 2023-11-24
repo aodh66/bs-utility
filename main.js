@@ -50,7 +50,8 @@ fs.cp(backupPath, savePath, { recursive: true }, (err) => {
       } else{
             // ! Debug
         // console.log(`Copied ${backupPath} to ${savePath}`)
-        win.webContents.send('mainResponse', true)
+        // ! Message way to return true
+        // win.webContents.send('mainResponse', true)
       }
   })
   // ! Simple way to return true
