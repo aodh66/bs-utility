@@ -32,6 +32,29 @@ saveBtn.addEventListener("click", async () => {
 const backupTime = document.getElementById("backup-time");
 const backupNumber = document.getElementById("backup-number");
 const backupBtn = document.getElementById("backup-btn");
+const backupStatusLight = document.getElementById("backup-status-light");
+
+backupTime.value = 10;
+backupNumber.value = 2;
+// TODO backupTime.value = ConfigValue
+// TODO backupNumber.value = ConfigValue
+
+// Initialise backup status
+let backupStatus = false;
+// display it to the user
+backupStatusLight.innerText = `backupStatus = ${backupStatus}`;
+
+// * Function to pull current backup params from index.html values
+// TODO will need a default one that would pull from the config file
+function giveBackupParams() {
+  return {
+    type: "backup",
+    folderPath: folderPathElement.innerText,
+    savePath: savePathElement.innerText,
+    frequency: backupTime.value,
+    number: backupNumber.value,
+  };
+}
 
 // * ==============================
 // * Snapshot Section
@@ -47,9 +70,9 @@ const snapshotHotkeyMessageElement = document.getElementById(
 );
 const snapshotBtn = document.getElementById("snapshotBtn");
 const snapshotName = document.getElementById("snapshot-name-box");
+// Set default values
 snapshotHotkeyElement.value = `Ctrl+0`;
 // TODO snapshotHotkeyBtn.value = ConfigValue
-// // TODO snapshotHotkeyBtn[0].placeholder = ConfigValue
 
 // * Function to pull current snapshot params from index.html values
 // TODO will need a default one that would pull from the config file
