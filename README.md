@@ -20,14 +20,10 @@ The intent of this project is to be lightweight and simple. Despite the tongue i
 - Light theme
 - Cross platform compatibility/mac and linux versions
 
-## Goals List
-1. snapshot hotkey (put a save button next to the field, so you save the hotkey, passing it from renderer to main, then you can use it, can prolly return a saved dialogue as well)
-2. backup
-3. config saving
-
 ## Installation
 
 ## Usage Instructions
+
 ### Snapshot Hotkeys
 To designate a hotkey type the key into the hotkey box and press the save button. Note that hotkeys and modifiers need to be entered into the box in the format shown by default with no spaces, capitals at the start of words, and separated by a + sign. If you wanted to hit Control, Shift, U to snapshot, you would enter either of the following into the box: Ctrl+Shift+U or Control+Shift+U
 For a full list of snapshot hotkey options, refer to the available modifiers and keycodes [listed here](https://www.electronjs.org/docs/latest/api/accelerator).

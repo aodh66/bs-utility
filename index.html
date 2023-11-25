@@ -1,83 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <title>Backup & Save Utility</title>
-    <link rel="stylesheet" href="./normalize.css">
-    <link rel="stylesheet" href="./styles.css"/>
-  </head>
-  <body>
-    <!-- * Title -->
-    <header>
-      <h1 class="header-title">Backup & Save Utility</h1>
-    </header>
-   
 
-    <main>
-      <!-- * Backup Section -->
-      <div class="backup-section section">
-        <!-- ! this will take the files from the chosen folder and we will place them inside the 
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+  <title>Backup & Save Utility</title>
+  <link rel="stylesheet" href="./normalize.css">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <!-- * Title -->
+  <header>
+    <h1 class="header-title">Backup & Save Utility</h1>
+  </header>
+
+
+  <main>
+    <!-- * Rolling Backup Section -->
+    <div class="backup-section section">
+      <!-- ! this will take the files from the chosen folder and we will place them inside the 
           chosen backup folder. In the documentation, tell people to make a backup folder and 
           name it, as the backups themselves will simply be named backup# -->
-        <h2 class="backup-title section-title">Backup</h2>
-        <p>Folder to Backup: <strong id="folderPath"></strong></p>
-        <button type="button" id="backup-folder-path-btn">Choose folder to backup</button>
+      <h2 class="backup-title section-title">Rolling Backup</h2>
+      <p>Folder to Backup: <strong id="folderPath"></strong></p>
+      <button type="button" id="backup-folder-path-btn">Choose folder to backup</button>
 
-        <p>Backup Location: <strong id="folderSavePath"></strong></p>
-        <button type="button" id="backup-folder-save-path-btn">Choose a location to save backups</button>
+      <p>Backup Location: <strong id="folderSavePath"></strong></p>
+      <button type="button" id="backup-folder-save-path-btn">Choose a location to save backups</button>
 
-        <p>TODO Backup Frequency (mins):</p>
-        <input id="backup-time" type="number" placeholder="10">
-        <p>TODO Number of Backups:</p>
-        <input id="backup-number" type="number" placeholder="2">
-        
-        <!-- Backup Button -->
-        <button type="button" class="button" id="backup-btn">Start Periodic Backup</button>
-      </div>
+      <!-- TODO -->
+      <p>TODO Backup Frequency (mins):</p>
+      <input id="backup-time" type="number" placeholder="10">
+      <p>TODO Number of Backups:</p>
+      <input id="backup-number" type="number" placeholder="2">
+
+      <!-- TODO -->
+      <!-- Backup Button -->
+      <button type="button" class="button" id="backup-btn">Start Periodic Backup</button>
+    </div>
+
+    <!-- * Snapshot Section -->
+    <div class="snapshot-section section">
+      <h2 class="snapshot-title section-title">Snapshot</h2>
+
+      <p>Snapshot Backup Location: <strong id="snapshotSavePath"></strong></p>
+      <button type="button" id="snapshot-save-path-btn">Choose a location to save snapshots</button>
+
+      <p>Hotkey to snapshot:</p>
+      <input id="snapshot-hotkey-box" type="text" placeholder="Ctrl+0">
       
-      <!-- * Snapshot Section -->
-      <div class="snapshot-section section">
-        <h2 class="snapshot-title section-title">Snapshot</h2>
+      <p>Snapshot name:</p>
+      <input id="snapshot-name-box" type="text" placeholder="Snapshot Name">
+      <button class="button" id="snapshotHotkeyBtn">Register Parameters</button>
+      <p><strong id="snapshotHotkeyMessage"></strong></p>
 
-        <p>Snapshot Backup Location: <strong id="snapshotSavePath"></strong></p>
-        <button type="button" id="snapshot-save-path-btn">Choose a location to save snapshots</button>
+      <!-- Snapshot Button -->
+      <button class="button" id="snapshotBtn">Snapshot</button>
+      <p><strong id="snapshotMessage"></strong></p>
+    </div>
 
-        <!-- TODO -->
-        <p>TODO Choose hotkey to snapshot:</p>
-        <input id="snapshot-hotkey-box" type="text" placeholder="Ctrl+0">
-        <button class="button" id="snapshotHotkeyBtn">Save Hotkey</button>
-        <p><strong id="snapshotHotkeyMessage"></strong></p>
-        <p>Snapshot name:</p>
-        <input id="snapshot-name-box" type="text" placeholder="Snapshot Name">
-    
-        <!-- Snapshot Button -->
-        <button class="button" id="snapshotBtn">Snapshot</button>
-        <p><strong id="snapshotMessage"></strong></p>
-      </div>
-  
-              <!-- TODO -->
-      <!-- * Profile Section -->
-      <div class="profile-seciton section">
-        <h2 class="profile-title section-title">Profiles</h2>
+    <!-- TODO -->
+    <!-- * Profile Section -->
+    <div class="profile-seciton section">
+      <h2 class="profile-title section-title">Profiles</h2>
 
-        <!-- Save profile -->
-        <button class="button">Save a profile</button>
+      <!-- Save profile -->
+      <button class="button">Save a profile</button>
 
-        <!-- Load profile -->
-        <button class="button">Load a profile</button>
-      </div>
-    </main>
+      <!-- Load profile -->
+      <button class="button">Load a profile</button>
+    </div>
+  </main>
 
-    <!-- ! Placeholder  -->
-    <p id="info">This text will be changed</p>
-  </body>
-  <script src="./renderer.js"></script>
+  <!-- ! Placeholder  -->
+  <p id="info">This text will be changed</p>
+</body>
+<script src="./renderer.js"></script>
+
 </html>
