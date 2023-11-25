@@ -14,6 +14,9 @@ const createWindow = () => {
       }
   })
 
+  // * Main app functionality
+  // Function to open the win explorer windows to select folders.
+    // Returns the selected filepath in an array
   ipcMain.handle('dialog:openDirectory', async () => {
     const { canceled, filePaths } = await dialog.showOpenDialog(win, {
       properties: ['openDirectory']
@@ -21,35 +24,42 @@ const createWindow = () => {
     if (canceled) {
       return
     } else {
+
+      // ! Debug
       // console.log(filePaths[0])
+
       return filePaths[0]
     }
   })
 
-  //TODO this function needs to be given the filepaths from the different html element innertexts
-  // button pressed
-  // capture innertext of snapshot name
-  // capture innertext of file path
-  // modify file path by adding snapshot name to end 
-  // actually copy the files
-  // alert user that snapshot has been saved
+  // Function to save a snapshot (manual backup instance) of a folder with a custom name
+    // Returns a boolean, true if it executed and saved
   ipcMain.handle('saveSnapshot', async (event, snapshotParams) => {
+
     // ! Debug
     // console.log(event)
     // console.log(snapshotParams)
     // ! Maybe unneeded
     // const params = snapshotParams
+
+    // Save backup filepath and modify receptacle with chosen snapshot name
     const backupPath = snapshotParams.folderPath
     const savePath = snapshotParams.savePath + '\\' +snapshotParams.snapshotName
+
         // ! Debug
     // console.log(savePath)
 
+    // Filesystem method and function to copy files from backupPath to savePath recursively
+      // Returns nothing directly, can call the Main to Renderer message function mainResponse
+      // to return a value, or can just return true to more simply do the same thing
 fs.cp(backupPath, savePath, { recursive: true }, (err) => {
       if (err) {
         throw err
       } else{
+
             // ! Debug
         // console.log(`Copied ${backupPath} to ${savePath}`)
+
         // ! Message way to return true
         // win.webContents.send('mainResponse', true)
       }
@@ -57,11 +67,6 @@ fs.cp(backupPath, savePath, { recursive: true }, (err) => {
   // ! Simple way to return true
     return true
   })
-  // ipcMain.on('snapshot', async (event, arg) => {
-  //   const result = await arg
-  //   console.log('directories selected', event)
-  //   console.log('directories selected', result)
-  // })
 
   // TODO let the user set a shortcut, then slap the entire above function in here as well, or let them call it through the preload or something
   globalShortcut.register('Alt+CommandOrControl+I', () => {
