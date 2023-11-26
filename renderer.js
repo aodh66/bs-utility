@@ -4,24 +4,61 @@ const information = document.getElementById("info");
 information.innerText = `This app is using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;
 
 // * ==============================
-// * Backup Section
+// * HTML Elements
 // * ==============================
+// *Backup
 // Backup Folder Elements
 const backupSection = document.getElementById("backupSection");
 const folderBtn = document.getElementById("backup-folder-path-btn");
 const folderPathElement = document.getElementById("folderPath");
-console.log(folderPathElement.innerText)
+// Save Location Elements
+const saveBtn = document.getElementById("backup-folder-save-path-btn");
+const savePathElement = document.getElementById("folderSavePath");
+// Backup Param and Button Elements
+const backupTime = document.getElementById("backup-time");
+const backupNumber = document.getElementById("backup-number");
+const backupBtn = document.getElementById("backup-btn");
+const backupStatusLight = document.getElementById("backup-status-light");
+const backupMessage = document.getElementById("backupMessage");
+// Snapshot Elements
+const snapshotSection = document.getElementById("snapshotSection")
+const snapshotPathBtn = document.getElementById("snapshot-save-path-btn");
+const snapshotPathElement = document.getElementById("snapshotSavePath");
+const snapshotMessageElement = document.getElementById("snapshotMessage");
+const snapshotHotkeyElement = document.getElementById("snapshot-hotkey-box");
+const snapshotHotkeyBtn = document.getElementById("snapshotHotkeyBtn");
+const snapshotHotkeyMessageElement = document.getElementById(
+  "snapshotHotkeyMessage"
+);
+const snapshotBtn = document.getElementById("snapshotBtn");
+const snapshotName = document.getElementById("snapshot-name-box");
 
+// * ==============================
+// * Loading Last Profile
+// * ==============================
+// Populate Backup UI values
+// TODO folderPathElement.innerText = `${ConfigValue}`
+// TODO savePathElement.innerText = `${ConfigValue}`
+backupTime.value = 10;
+backupNumber.value = 2;
+// TODO backupTime.value = `${ConfigValue}`
+// TODO backupNumber.value = `${ConfigValue}`
+// Populate Snapshot UI values
+snapshotHotkeyElement.value = `Ctrl+0`;
+snapshotName.value = 'Snapshot'
+// TODO snapshotHotkeyBtn.value = `${ConfigValue}`
+// TODO snapshotPathElement.innerText = `${ConfigValue}`
+
+
+
+// * ==============================
+// * Backup Section
+// * ==============================
 // * Choose folder to backup Event Handling
 folderBtn.addEventListener("click", async () => {
   const folderPath = await window.myAPI.selectFolder();
   folderPathElement.innerText = folderPath;
 });
-
-// Save Location Elements
-const saveBtn = document.getElementById("backup-folder-save-path-btn");
-const savePathElement = document.getElementById("folderSavePath");
-console.log(savePathElement.innerText)
 
 // * Choose save location Event Handling
 saveBtn.addEventListener("click", async () => {
@@ -32,19 +69,6 @@ saveBtn.addEventListener("click", async () => {
 // * ------------------------------
 // * Rolling Backup
 // * ------------------------------
-// Backup Param and Button Elements
-const backupTime = document.getElementById("backup-time");
-const backupNumber = document.getElementById("backup-number");
-const backupBtn = document.getElementById("backup-btn");
-const backupStatusLight = document.getElementById("backup-status-light");
-const backupMessage = document.getElementById("backupMessage");
-
-// Populate UI values
-backupTime.value = 10;
-backupNumber.value = 2;
-// TODO backupTime.value = ConfigValue
-// TODO backupNumber.value = ConfigValue
-
 // Initialise backup states
 let backupState = false;
 let currentNumb = 1;
@@ -66,7 +90,6 @@ function showBackupState() {
 showBackupState();
 
 // * Function to pull current Backup Params
-// TODO will need a default one that would pull from the config file
 function getBackupParams() {
   return {
     type: "backup",
@@ -240,24 +263,6 @@ backupBtn.addEventListener("click", () => {
 // * ==============================
 // * Snapshot Section
 // * ==============================
-// Snapshot Elements
-const snapshotSection = document.getElementById("snapshotSection")
-const snapshotPathBtn = document.getElementById("snapshot-save-path-btn");
-const snapshotPathElement = document.getElementById("snapshotSavePath");
-const snapshotMessageElement = document.getElementById("snapshotMessage");
-const snapshotHotkeyElement = document.getElementById("snapshot-hotkey-box");
-const snapshotHotkeyBtn = document.getElementById("snapshotHotkeyBtn");
-const snapshotHotkeyMessageElement = document.getElementById(
-  "snapshotHotkeyMessage"
-);
-const snapshotBtn = document.getElementById("snapshotBtn");
-const snapshotName = document.getElementById("snapshot-name-box");
-// Set default values
-snapshotHotkeyElement.value = `Ctrl+0`;
-snapshotName.value = 'Snapshot'
-// TODO snapshotHotkeyBtn.value = ConfigValue
-console.log(snapshotPathElement.innerText)
-
 // * Function to pull current snapshot params from index.html values
 // TODO will need a default one that would pull from the config file
 function giveSnapshotParams() {
@@ -393,10 +398,23 @@ window.myAPI.sendSnapshotParams((event, value) => {
 // TODO
 // Maybe just open the full dialogue to save a file for profiles and then load the same file with the full window dialogue
 // Profile Elements
-const profileSection = document.getElementById("snapshotSection")
+const profileSection = document.getElementById("profileSection")
+const profileNameElement = document.getElementById("profile-name-box");
 const profileSaveBtn = document.getElementById("saveProfileBtn");
 const profileLoadBtn = document.getElementById("loadProfileBtn");
 const profileMessageElement = document.getElementById("profileMessage");
+profileNameElement.value = 'placeholderProfile'
+let placeholderProfile = 'placeholderProfile'
+profileMessageElement.innerText = `Profile ${placeholderProfile} Loaded`
+
+function getProfileData() {
+  return {
+    name: profileNameElement.value,
+    folderPath: folderPathElement.innerText,
+    savePath: snapshotPathElement.innerText,
+    snapshotName: snapshotName.value,
+  };
+}
 
 // * Profile Save Onclick
 profileSaveBtn.addEventListener("click", async () => {

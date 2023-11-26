@@ -17,7 +17,7 @@ const fs = require("node:fs");
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
-    height: 1000,
+    height: 1150,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       enableRemoteModule: true,
@@ -201,6 +201,74 @@ const createWindow = () => {
     });
     // ! ======================================================================================
   });
+  
+
+
+
+  // ! ======================================================================================
+  // ! Under Construction
+  // ! ======================================================================================
+  // * Config file saving and loading
+  // Filesystem method and function to write the last profile used
+  let placeholderData = {
+    profileName: 'PlaceholderFile'
+  }
+  let profileStateData = JSON.stringify(placeholderData);
+  fs.writeFileSync('config.json', profileStateData);
+  
+  // Filesystem method and function to read the last profile used
+  let rawProfileStateData = fs.readFileSync('config.json');
+  let profileToLoad = JSON.parse(rawProfileStateData);
+  console.log('profile state json', profileToLoad);
+  
+  // Filesystem method and function to save profile data
+  let placeholderProfileData = {
+    profileName: 'PlaceholderProfile',
+    profileData: 'lotsofdata',
+  }
+  let profileSaveData = JSON.stringify(placeholderProfileData);
+  fs.writeFileSync(`${placeholderProfileData.profileName}.json`, profileSaveData);
+  
+  // Filesystem method and function to read profile data
+  let profileToRead = 'PlaceholderProfile'
+  let rawProfileData = fs.readFileSync(`${profileToRead}.json`);
+  let profileDataToLoad = JSON.parse(rawProfileData);
+  console.log('profile data json', profileDataToLoad);
+  
+  
+
+
+
+
+
+
+
+
+
+  // Filesystem method and function to write the given element to a file
+  // let fileContent = {
+  //   profileName:'PlaceholderFile'
+  // }
+  // fs.writeFile(`${fileContent.profileName}.txt`, `${fileContent}`, function (err) {
+  //   if (err) throw err;
+  //   console.log(`Saved ${fileContent.profileName} Profile`);
+  // });
+
+  // Filesystem method and function to write the given element to a file
+  // fs.readFile('file.txt', function(err, data) {
+  //   res.writeHead(200, {'Content-Type': 'text/html'});
+  //   res.write(data);
+  //   return res.end();
+  // });
+  
+  
+  
+  // ! ======================================================================================
+
+
+
+
+
 
   // * =================================
   // * Loads the index.html

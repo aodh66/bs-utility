@@ -30,13 +30,13 @@
       <p>Backup Location: <strong id="folderSavePath"></strong></p>
       <button type="button" id="backup-folder-save-path-btn">Choose a location to save backups</button>
 
-      <!-- TODO -->
-      <p>TODO Backup Frequency (mins):</p>
+      <p>TODO Backup Frequency (mins):
       <input id="backup-time" type="number" placeholder="10">
-      <p>TODO Number of Backups:</p>
+      </p>
+      <p>TODO Number of Backups:
       <input id="backup-number" type="number" placeholder="2">
+      </p>
 
-      <!-- TODO -->
       <!-- Backup Button -->
       <button type="button" class="button" id="backup-btn">Start Periodic Backup</button>
       <p>backupStatus = <strong id="backup-status-light"></strong></p>
@@ -50,14 +50,16 @@
       <p>Snapshot Backup Location: <strong id="snapshotSavePath"></strong></p>
       <button type="button" id="snapshot-save-path-btn">Choose a location to save snapshots</button>
 
-      <p>Hotkey to snapshot:</p>
+      <p>Hotkey to snapshot:
       <input id="snapshot-hotkey-box" type="text" placeholder="Ctrl+0">
-      
-      <p>Snapshot name:</p>
+      </p>
+
+      <p>Snapshot name:
       <input id="snapshot-name-box" type="text" placeholder="Snapshot Name">
+      </p>
       <button class="button" id="snapshotHotkeyBtn">Register Parameters</button>
       <p><strong id="snapshotHotkeyMessage"></strong></p>
-
+      
       <!-- Snapshot Button -->
       <button class="button" id="snapshotBtn">Snapshot</button>
       <p><strong id="snapshotMessage"></strong></p>
@@ -67,7 +69,9 @@
     <!-- * Profile Section -->
     <div class="profile-seciton section" id="profileSection">
       <h2 class="profile-title section-title">Profiles</h2>
-      
+      <p>Profile name:
+      <input id="profile-name-box" type="text" placeholder="ProfileName">
+      </p>
       <!-- Save profile -->
       <button class="button" id="saveProfileBtn">Save a profile</button>
       
