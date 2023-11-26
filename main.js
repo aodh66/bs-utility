@@ -24,7 +24,7 @@ const createWindow = () => {
       enableRemoteModule: true,
     },
   });
-
+  
   // * =================================
   // * Main app functionality
   // * =================================
@@ -40,80 +40,139 @@ const createWindow = () => {
       return filePaths[0];
     }
   });
-
-  // ! TEST Backupstate and cron functionality, need to find a way to pass in params or 
-    // ! create the job inside the handler or it's doomed
-      // ! if it doesn't work out, look at cron standalone funcitons like cron.sendAt()
-        // ! if that still doesn't work look at the below concept, which could maybe even work with just setTimeout
-
-
-// ! let stopped = false
-        
-// ! // infinite loop
-// ! while(!stopped) {
-// !   let res = await fetch('api link') 
-// !   if (res.something) stopped = true // stop when you want
-// ! }
-
-
-  let backupState = false
-  console.log(`main start status ${backupState}`)
-  const rollingBackup = new CronJob(
-    '* * * * * *', // cronTime
-    function (lmao) {
-      console.log(`Every second ${lmao}`);
-    }, // onTick
-    null, // onComplete
-  );
   
-  // * Function to save a snapshot (manual backup instance) of a folder with a custom name
-  // * Runs when snapshot save button is clicked
-  // * Returns a boolean, true if it executed and saved
-  function backupHandler(event, backupParams) {
-    // Save backup filepath and modify receptacle with chosen snapshot name
-    const backupPath = backupParams.folderPath;
-    const savePath =
-    backupParams.savePath + "\\"; // TODO + INSERT FOLDER NAME FROM MATH;
-    backupState = backupParams.state
-    const frequency = backupParams.frequency
-    const number = backupParams.number
-    console.log(`main call status ${backupState}`)
-
-    if(backupState === true) {
-      rollingBackup(backupState).start()
-    } else
-    if(backupState === false) {
-      rollingBackup.stop()
-    }
+  // ! TEST Backupstate and cron functionality, need to find a way to pass in params or 
+  // ! create the job inside the handler or it's doomed
+  // ! if it doesn't work out, look at cron standalone funcitons like cron.sendAt()
+  // ! if that still doesn't work look at the below concept, which could maybe even work with just setTimeout
+  
+  
+  // ! let stopped = false
+  
+  // ! // infinite loop
+  // ! while(!stopped) {
+    // !   let res = await fetch('api link') 
+    // !   if (res.something) stopped = true // stop when you want
+    // ! }
     
-    // function rollingBackup(backupState){
-    //   // do whatever you like here
-    //   if(backupState === true) {
-    //     console.log('backing up')
-    //     rollingBackup.start()
-    //   } else
-    //   if(backupState === false) {
-    //     return false
-    //   }
-    // }
-    // rollingBackup();
-  }
-    ipcMain.on("backup", backupHandler) 
+    
+    // ! Test Area =========================================================================
+
+  ipcMain.handle('backupSave', async (event, backupParams) => {
+    console.log(backupParams)
+    console.log(backupParams.folderPath)
+    // Save backup filepath and modify receptacle with chosen snapshot name
+    const folderPath = backupParams.folderPath;
+    const saveDir = 'PLACEHOLDER' //backupParams.currentNumb
+    const saveDirString = `Backup ${saveDir}`
+    const savePath = backupParams.savePath + '\\' +saveDirString;
+
+    // Filesystem method and function to copy files from backupPath to savePath recursively
+    // Returns nothing directly, can call the Main to Renderer message function mainResponse
+    // to return a value, or can just return true to more simply do the same thing
+    fs.cp(folderPath, savePath, { recursive: true }, (err) => {
+      if (err) {
+        throw err;
+      }
+      // ! Message way to return true
+      // win.webContents.send('mainResponse', true)
+    });
+    // ! Simple way to return true
+    return backupParams;
+  })
 
 
-    // // Filesystem method and function to copy files from backupPath to savePath recursively
-    // // Returns nothing directly, can call the Main to Renderer message function mainResponse
-    // // to return a value, or can just return true to more simply do the same thing
-    // fs.cp(backupPath, savePath, { recursive: true }, (err) => {
-    //   if (err) {
-    //     throw err;
-    //   }
-    //   // ! Message way to return true
-    //   // win.webContents.send('mainResponse', true)
-    // });
-    // // ! Simple way to return true
-    // return true;
-  // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // let backupState = false
+  // console.log(`main start status ${backupState}`)
+  // const rollingBackup = new CronJob(
+  //   '* * * * * *', // cronTime
+  //   function () {
+  //     win.webContents.sendToFrame('backupParams', 'give')
+  //     ipcMain.on('backupParams', (_event, value) => {
+  //       console.log(value) // will print value to Node console
+  //     })
+  //     console.log(`Every second ${lmao}`);
+  //   }, // onTick
+  //   null, // onComplete
+  // );
+
+
+  
+  // // * Function to initiate rolling backup of a folder
+  // // * Runs when backup button is clicked
+  // // * Returns a boolean, true if it executed and saved
+  // function backupHandler(_event, backupParams) {
+  //   // Save backup filepath and modify receptacle with chosen snapshot name
+  //   const backupPath = backupParams.folderPath;
+  //   const savePath =
+  //   backupParams.savePath + "\\"; // TODO + INSERT FOLDER NAME FROM MATH;
+  //   backupState = backupParams.state
+  //   const frequency = backupParams.frequency
+  //   const number = backupParams.number
+  //   console.log(`main call status ${backupState}`)
+
+  //   if(backupState === true) {
+  //     console.log('backing up')
+  //     rollingBackup.start()
+  //   } else
+  //   if(backupState === false) {
+  //     rollingBackup.stop()
+  //   }
+    
+  //   // function rollingBackup(backupState){
+  //   //   // do whatever you like here
+  //   //   if(backupState === true) {
+  //   //     console.log('backing up')
+  //   //     rollingBackup.start()
+  //   //   } else
+  //   //   if(backupState === false) {
+  //   //     return false
+  //   //   }
+  //   // }
+  //   // rollingBackup();
+  // }
+  //   ipcMain.on("backup", backupHandler) 
+
+
+  //   // // Filesystem method and function to copy files from backupPath to savePath recursively
+  //   // // Returns nothing directly, can call the Main to Renderer message function mainResponse
+  //   // // to return a value, or can just return true to more simply do the same thing
+  //   // fs.cp(backupPath, savePath, { recursive: true }, (err) => {
+  //   //   if (err) {
+  //   //     throw err;
+  //   //   }
+  //   //   // ! Message way to return true
+  //   //   // win.webContents.send('mainResponse', true)
+  //   // });
+  //   // // ! Simple way to return true
+  //   // return true;
+  // // });
+// ! Test Area =========================================================================
+
+
+
+
+
+
+
+
+
+
+
+
 
   // * Function to save a snapshot (manual backup instance) of a folder with a custom name
   // * Runs when snapshot save button is clicked

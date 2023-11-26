@@ -1,3 +1,5 @@
+
+
 // ! Placeholder
 const information = document.getElementById("info");
 information.innerText = `This app is using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;
@@ -33,6 +35,7 @@ const backupTime = document.getElementById("backup-time");
 const backupNumber = document.getElementById("backup-number");
 const backupBtn = document.getElementById("backup-btn");
 const backupStatusLight = document.getElementById("backup-status-light");
+const backupMessage = document.getElementById("backupMessage");
 
 backupTime.value = 10;
 backupNumber.value = 2;
@@ -41,9 +44,14 @@ backupNumber.value = 2;
 
 // Initialise backup status
 let backupState = false;
+function giveBackupState() {
+  givenState = backupStatusLight.innerText
+  return givenState
+}
+
 // display it to the user
 function showBackupState() {
-  backupStatusLight.innerText = `backupStatus = ${backupState}`;
+  backupStatusLight.innerText = `${backupState}`;
 }
 showBackupState()
 
@@ -72,23 +80,233 @@ function giveBackupParams() {
 //     showBackupState()
 //   }
 // })
-// Function to send backupstate 
-backupBtn.addEventListener("click", () => {
-  // get current paths and filenames in param object
-  console.log(`renderer start status ${backupState}`)
-  if(backupState === false) {
-    backupState = true
-    showBackupState()
-  } else
-  if(backupState === true) {
-    backupState = false
-    showBackupState()
-  }
-  console.log(`renderer call status ${backupState}`)
-  const backupParams = giveBackupParams();
+// // Function to send backupstate 
+// backupBtn.addEventListener("click", () => {
+//   // get current paths and filenames in param object
+//   console.log(`renderer start status ${backupState}`)
+//   if(backupState === false) {
+//     backupState = true
+//     showBackupState()
+//   } else
+//   if(backupState === true) {
+//     backupState = false
+//     showBackupState()
+//   }
+//   console.log(`renderer call status ${backupState}`)
+//   const backupParams = giveBackupParams();
 
- window.myAPI.backup(backupParams);
-});
+//  window.myAPI.backup(backupParams);
+// });
+
+// window.myAPI.backupParams((event, value) => {
+//   if(value === 'give') {
+//     let backupParams = giveBackupParams();
+//    event.sender.send('backupParams', backupParams)
+//   }
+// })
+
+    // ! Test Area =========================================================================
+
+    // ! Ideas
+    // ! - Cron
+    // ! - send a call to main asking if it should go
+        // ! - what if each run it checks to see if the cronjob is already created
+    // ! - creates a non constant cronJob. If it exists, stop it, overwrite and start it
+        // ! - if doesn't exist, write it and start it
+    // ! - 
+
+// ! Rolling function
+  //   function testrollBackup(){
+  //     console.log('rolling')
+  //     let choice = giveBackupState()
+  //     while(!choice) {
+  //       console.log('stopping')
+  //       return
+  //       // clearTimeout(testrollBackup)
+  //     }
+  //     setTimeout(testrollBackup, 1000);
+  // }
+  // testrollBackup();
+
+  // ! Cronjob
+  // const cronJob = new CronJob(
+  //     '* * * * * *', // cronTime
+  //     function () {
+  //       console.log(`Every second ${lmao}`);
+  //     }, // onTick
+  //     null, // onComplete
+  //   );
+
+  // let rollBackup = () => {
+  //   let choice = giveBackupState()
+  //   if(choice){
+  //     console.log('GOING')
+  //     setTimeout(rollBackup, 1000);
+  //   } else
+  //   if(!choice) {
+  //     return
+  //     // setTimeout(() => {
+  //     //   console.log('Break')
+  //     // }, 1000);
+  //   }
+    
+    // do whatever you like here
+    // console.log(backupState)
+    // if(!backupState) {
+    //   return
+    // }
+  // }
+
+    // ! Onclick toggle event
+    // backupBtn.addEventListener("click", () => {
+    //   // get current paths and filenames in param object
+    //   console.log(`renderer start status ${backupState}`)
+    //   if(backupState === false) {
+    //     backupState = true
+    //     showBackupState()
+    //     // rollBackup = () => {
+    //     //   let choice = giveBackupState()
+    //     //   if(choice){
+    //     //     console.log('GOING')
+    //     //     setTimeout(rollBackup, 1000);
+    //     //   } else
+    //     //   if(!choice) {
+    //     //     setTimeout(() => {
+    //     //       console.log('Break')
+    //     //     }, 1000);
+    //     //   }
+          
+    //     //   // do whatever you like here
+    //     //   // console.log(backupState)
+    //     //   // if(!backupState) {
+    //     //   //   return
+    //     //   // }
+    //     // }
+    //     rollBackup()
+    //   } else
+    //   if(backupState === true) {
+    //     backupState = false
+    //     showBackupState()
+    //     // rollBackup = () => {
+    //     //   console.log('BREAK')
+    //     // };
+    //     // rollBackup()
+    //   }
+
+    //   //! while(giveBackupState() === `backupStatus = true`){} 
+
+
+    //   // function rollBackup () {
+    //   //   let choice = giveBackupState()
+    //   //   console.log(choice)
+    //   //   if(choice === `backupStatus = true`){
+    //   //     console.log('GOING')
+    //   //   } else
+    //   //   if(choice === `backupStatus = true`) {
+    //   //     console.log('STOPPING')
+    //   //     return
+    //   //   }
+    //   // }
+    //   //   setTimeout(rollBackup, 3000);
+    //   //   rollBackup()
+    //   // console.log(`renderer call status ${backupState}`)
+    //   // const backupParams = giveBackupParams();
+    // });
+
+    // !WORKING INFINITE FUNCTIONS, overwrite it to stop it
+    // ! ==========================
+    // function infinite () {
+      //     console.log('Infinite Function')
+      //     setTimeout(infinite, 1000);
+      //   }
+      //   infinite();
+
+      // let state = true
+      let state = false
+
+      function stateTrue() {
+        state = true
+      }
+      
+      function stateFalse() {
+        state = false
+      }
+
+      function showState() {
+        backupStatusLight.innerText = `${state}`;
+      }
+      showBackupState()
+
+      // TODO put in check to make sure that the variables when it was first called have not changed
+        // TODO so if the async status response is different to params, then return
+      let testFunc = async () => {
+        if(!state) {
+          return
+        }
+        // console.log('Test is running')
+        let params = giveBackupParams()
+        console.log(params)
+
+        const status = await window.myAPI.backupSave(params);
+        // TODO on positive response, display message to the user on save status
+        if (status) {
+          backupMessage.innerText = `Backup ${status.currentNumb} Saved`;
+        }
+
+        setTimeout(testFunc, 1000);
+      }
+
+      document.getElementById("saveProfileBtn").addEventListener("click", () => {
+        stateTrue()
+        testFunc()
+      })
+      
+      document.getElementById("loadProfileBtn").addEventListener("click", () => {
+        stateFalse()
+      })
+
+    // ! Onclick toggle event
+    backupBtn.addEventListener("click", () => {
+      console.log('toggle state')
+      if(state === false) {
+        stateTrue()
+        console.log(state)
+        showState()
+        testFunc()
+      } else
+      if(state === true) {
+        stateFalse()
+        console.log(state)
+        showState()
+      }
+    });
+
+    // ! Older Tests ======================================
+      // let testFunc = () => {
+      //   console.log('Test is running')
+      //   // hello = giveHello()
+      //   if(!hello) {
+      //     return
+      //   }
+      //   setTimeout(testFunc, 1000);
+      // }
+      // testFunc();
+
+      // document.getElementById("saveProfileBtn").addEventListener("click", () => {
+      //   // let testFunc = () => {
+      //   //   console.log('Test is running')
+      //   //   setTimeout(testFunc, 1000);
+      //   // }
+      //   // testFunc();
+      // })
+      
+      // document.getElementById("loadProfileBtn").addEventListener("click", () => {
+      //   // testFunc = () => {
+      //   //   console.log('Test is stopping')
+      //   // }
+      // })
+      // ! ==========================
+    // ! Test Area =========================================================================
 
 // * ==============================
 // * Snapshot Section

@@ -26,5 +26,10 @@ contextBridge.exposeInMainWorld("myAPI", {
     mainResponse: (mainResponse) => ipcRenderer.on("mainResponse", mainResponse),
     // ! TEST Takes the data from backupParams, starts backing up, returns a boolean
     backup: (backupParams) =>
-      ipcRenderer.send("backup", backupParams),
+    ipcRenderer.send("backup", backupParams),
+    // ! TEST Takes the data from backupParams, starts backing up, returns a boolean
+    backupSave: (backupParams) =>
+    ipcRenderer.invoke("backupSave", backupParams),
+    // ! TEST Sends a value from Main to Renderer through the backupParams channel to ask for backupParams
+    backupParams: (backupParams) => ipcRenderer.on("backupParams", backupParams),
 });
