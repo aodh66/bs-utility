@@ -55,6 +55,21 @@ const createWindow = () => {
     const saveDir = `Backup ${backupParams.currentNumb}`;
     const savePath = backupParams.savePath + "\\" + saveDir;
 
+    // If no filepaths are provided, ask for them, change UI color, display error
+    if (!backupParams.folderPath || !backupParams.savePath) {
+      // ! Debug
+      // ? DELETE
+      // console.log('Provide filepaths')
+      return;
+    }
+    // Prevent trying to backup to the same filepath, change UI color, display error
+    if (backupParams.folderPath == backupParams.savePath) {
+      // ! Debug
+      // ? DELETE
+      // console.log('You cannot back a folder up into itself')
+      return;
+    }
+
     // ! Tester with no save call
     // ! ======================================================================================
     // ! CURRENTLY DISABLED
@@ -83,6 +98,21 @@ const createWindow = () => {
     const backupPath = snapshotParams.folderPath;
     const savePath =
       snapshotParams.savePath + "\\" + snapshotParams.snapshotName;
+
+    // If no filepaths are provided, ask for them, change UI color, display error
+    if (!snapshotParams.folderPath || !snapshotParams.savePath) {
+      // ! Debug
+      // ? DELETE
+      // console.log('Provide filepaths')
+      return;
+    }
+    // Prevent trying to backup to the same filepath, change UI color, display error
+    if (snapshotParams.folderPath == snapshotParams.savePath) {
+      // ! Debug
+      // ? DELETE
+      // console.log('You cannot back a folder up into itself')
+      return;
+    }
 
     // ! Tester with no save call
     // ! ======================================================================================
@@ -133,6 +163,21 @@ const createWindow = () => {
     // console.log(value);
     const backupPath = value.folderPath;
     const savePath = value.savePath + "\\" + value.snapshotName;
+
+        // If no filepaths are provided, ask for them, change UI color, display error
+        if (!value.folderPath || !value.savePath) {
+          // ! Debug
+          // ? DELETE
+          // console.log('Provide filepaths')
+          return;
+        }
+        // Prevent trying to backup to the same filepath, change UI color, display error
+        if (value.folderPath == value.savePath) {
+          // ! Debug
+          // ? DELETE
+          // console.log('You cannot back a folder up into itself')
+          return;
+        }
 
     // ! Tester with no save call
     // ! ======================================================================================
