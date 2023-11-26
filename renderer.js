@@ -319,7 +319,7 @@ function giveBackupParams() {
           return
         }
         changeBackNum()
-        setTimeout(()=>{testFunc(currentParams)}, 3000);
+        setTimeout(()=>{testFunc(currentParams)}, inputState.frequency*60000);
       }
 
       // !Test With Profile Buttons 

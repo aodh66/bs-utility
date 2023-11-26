@@ -64,12 +64,11 @@ const createWindow = () => {
     console.log(backupParams.folderPath)
     // Save backup filepath and modify receptacle with chosen snapshot name
     const folderPath = backupParams.folderPath;
-    const saveDir = backupParams.currentNumb
-    const saveDirString = `Backup ${saveDir}`
-    const savePath = backupParams.savePath + '\\' +saveDirString;
+    const saveDir = `Backup ${backupParams.currentNumb}`
+    const savePath = backupParams.savePath + '\\' + saveDir;
     
     // ! Tester with no save call
-    // return backupParams;
+    return backupParams;
     // Filesystem method and function to copy files from backupPath to savePath recursively
     // Returns nothing directly, can call the Main to Renderer message function mainResponse
     // to return a value, or can just return true to more simply do the same thing
