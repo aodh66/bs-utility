@@ -46,6 +46,7 @@ const createWindow = () => {
   ipcMain.handle("backupSave", async (event, backupParams) => {
     // todo needs a check to make sure there are filepaths
     // ! Debug
+    // ? DELETE
     console.log("Backing up");
     // console.log(backupParams)
     // console.log(backupParams.folderPath)
@@ -128,6 +129,7 @@ const createWindow = () => {
   // * Returns a boolean, true if it executed and saved
   ipcMain.on("sentParams", (_event, value) => {
     // ! Debug
+    // ? DELETE
     // console.log(value);
     const backupPath = value.folderPath;
     const savePath = value.savePath + "\\" + value.snapshotName;
@@ -136,7 +138,7 @@ const createWindow = () => {
     // ! ======================================================================================
     // ! CURRENTLY DISABLED
     // ! ======================================================================================
-    return backupParams;
+    return value;
     // Filesystem method and function to copy files from backupPath to savePath recursively
     // Returns nothing directly, calls the Main to Renderer message function mainResponse
     // to return true

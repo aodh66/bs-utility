@@ -19,7 +19,7 @@
 
   <main>
     <!-- * Rolling Backup Section -->
-    <div class="backup-section section">
+    <div class="backup-section section" id="backupSection">
       <!-- ! this will take the files from the chosen folder and we will place them inside the 
           chosen backup folder. In the documentation, tell people to make a backup folder and 
           name it, as the backups themselves will simply be named backup# -->
@@ -44,7 +44,7 @@
     </div>
 
     <!-- * Snapshot Section -->
-    <div class="snapshot-section section">
+    <div class="snapshot-section section" id="snapshotSection">
       <h2 class="snapshot-title section-title">Snapshot</h2>
 
       <p>Snapshot Backup Location: <strong id="snapshotSavePath"></strong></p>
@@ -62,17 +62,18 @@
       <button class="button" id="snapshotBtn">Snapshot</button>
       <p><strong id="snapshotMessage"></strong></p>
     </div>
-
+    
     <!-- TODO -->
     <!-- * Profile Section -->
-    <div class="profile-seciton section">
+    <div class="profile-seciton section" id="profileSection">
       <h2 class="profile-title section-title">Profiles</h2>
-
+      
       <!-- Save profile -->
       <button class="button" id="saveProfileBtn">Save a profile</button>
-
+      
       <!-- Load profile -->
       <button class="button" id="loadProfileBtn">Load a profile</button>
+      <p><strong id="profileMessage"></strong></p>
     </div>
   </main>
 

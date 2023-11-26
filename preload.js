@@ -2,6 +2,7 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
 // ! Placeholder
+// ? DELETE
 contextBridge.exposeInMainWorld("versions", {
   node: () => process.versions.node,
   chrome: () => process.versions.chrome,
