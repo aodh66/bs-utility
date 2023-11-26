@@ -22,6 +22,9 @@ contextBridge.exposeInMainWorld("myAPI", {
   // Takes the data from snapshotparams, sets the hotkey, and returns a boolean
   saveSnapshotHotkey: (snapshotParams) =>
     ipcRenderer.invoke("saveSnapshotHotkey", snapshotParams),
-  // Sends a value from Main to Renderer through the mainResponse channel (intended instead of the boolean, but can be used for other things)
-  mainResponse: (mainResponse) => ipcRenderer.on("mainResponse", mainResponse),
+    // Sends a value from Main to Renderer through the mainResponse channel (intended instead of the boolean, but can be used for other things)
+    mainResponse: (mainResponse) => ipcRenderer.on("mainResponse", mainResponse),
+    // ! TEST Takes the data from backupParams, starts backing up, returns a boolean
+    backup: (backupParams) =>
+      ipcRenderer.send("backup", backupParams),
 });

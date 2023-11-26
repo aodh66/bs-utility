@@ -40,9 +40,12 @@ backupNumber.value = 2;
 // TODO backupNumber.value = ConfigValue
 
 // Initialise backup status
-let backupStatus = false;
+let backupState = false;
 // display it to the user
-backupStatusLight.innerText = `backupStatus = ${backupStatus}`;
+function showBackupState() {
+  backupStatusLight.innerText = `backupStatus = ${backupState}`;
+}
+showBackupState()
 
 // * Function to pull current backup params from index.html values
 // TODO will need a default one that would pull from the config file
@@ -53,8 +56,39 @@ function giveBackupParams() {
     savePath: savePathElement.innerText,
     frequency: backupTime.value,
     number: backupNumber.value,
+    state: backupState,
   };
 }
+
+// ! TEST STATE AND ROLLING FUNCTION CALL
+// // Function to toggle backupState and show it in the ui onclick of backup button
+// backupBtn.addEventListener("click", () => {
+//   if(backupState === false) {
+//     backupState = true
+//     showBackupState()
+//   } else
+//   if(backupState === true) {
+//     backupState = false
+//     showBackupState()
+//   }
+// })
+// Function to send backupstate 
+backupBtn.addEventListener("click", () => {
+  // get current paths and filenames in param object
+  console.log(`renderer start status ${backupState}`)
+  if(backupState === false) {
+    backupState = true
+    showBackupState()
+  } else
+  if(backupState === true) {
+    backupState = false
+    showBackupState()
+  }
+  console.log(`renderer call status ${backupState}`)
+  const backupParams = giveBackupParams();
+
+ window.myAPI.backup(backupParams);
+});
 
 // * ==============================
 // * Snapshot Section
