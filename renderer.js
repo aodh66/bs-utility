@@ -207,7 +207,7 @@ backupBtn.addEventListener("click", () => {
       return;
     }
     // Prevent negative backup frequency or number of backups, change UI color, display error
-    if (passedState.frequency <= 0.01 || backupNumber.value < 1) {
+    if (passedState.frequency < 0.01 || backupNumber.value < 1) {
       // ! Debug
       // ? DELETE
       // console.log('You cannot have <=0 backup frequency, or less than 1 backup')
