@@ -223,6 +223,19 @@ function giveBackupParams() {
 
       // let state = true
       let state = false
+      let currentNumb = 1
+      let paramState = getParamState()
+
+      function getParamState() {
+        return {
+          type: "backup",
+          folderPath: folderPathElement.innerText,
+          savePath: savePathElement.innerText,
+          frequency: backupTime.value,
+          currentNumb: currentNumb,
+          state: state,
+        };
+      }
 
       function stateTrue() {
         state = true
@@ -235,35 +248,89 @@ function giveBackupParams() {
       function showState() {
         backupStatusLight.innerText = `${state}`;
       }
-      showBackupState()
+      showState()
+
+      
+      function resetBackNum() {
+        if(currentNumb !== 1) {
+          currentNumb = 1
+        }
+      }
+      function changeBackNum() {
+        let total = backupNumber.value
+        if(currentNumb < total) {
+          currentNumb = currentNumb + 1
+        } else
+        if(currentNumb = total) {
+          currentNumb = 1
+        }
+      }
+      // ! Test for currentNumb function
+      // backupNumber.value = 3
+      // console.log(currentNumb)
+      // changeBackNum()
+      // console.log(currentNumb)
+      // changeBackNum()
+      // console.log(currentNumb)
+      // changeBackNum()
+      // console.log(currentNumb)
 
       // TODO put in check to make sure that the variables when it was first called have not changed
         // TODO so if the async status response is different to params, then return
-      let testFunc = async () => {
+        // currentNumb, make function that checks the number of backups field, then changes a state
+          // var by increasing it by one as long as it is less than the numbackups field 
+          async function testFunc(inputState) {
         if(!state) {
           return
         }
         // console.log('Test is running')
-        let params = giveBackupParams()
-        console.log(params)
+        // let tempParams = giveBackupParams()
 
-        const status = await window.myAPI.backupSave(params);
+          paramState = {
+          type: "backup",
+          folderPath: folderPathElement.innerText,
+          savePath: savePathElement.innerText,
+          frequency: backupTime.value,
+          currentNumb: currentNumb,
+          // state: state,
+        };
+
+        console.log(paramState)
+        
+        // ! Backup call to Main
+        const status = await window.myAPI.backupSave(paramState);
         // TODO on positive response, display message to the user on save status
         if (status) {
+          console.log(status)
           backupMessage.innerText = `Backup ${status.currentNumb} Saved`;
         }
+        if(!state) {
+          console.log('negatory')
+          return
+        }
 
-        setTimeout(testFunc, 1000);
+        // might not need to do this check if state is the same
+        let currentParams = inputState
+
+        if(status.folderPath != inputState.folderPath || 
+          status.savePath != inputState.savePath || 
+          status.frequency != inputState.frequency) {
+          console.log('negatory')
+          return
+        }
+        changeBackNum()
+        setTimeout(()=>{testFunc(currentParams)}, 3000);
       }
 
-      document.getElementById("saveProfileBtn").addEventListener("click", () => {
-        stateTrue()
-        testFunc()
-      })
+      // !Test With Profile Buttons 
+      // document.getElementById("saveProfileBtn").addEventListener("click", () => {
+      //   stateTrue()
+      //   testFunc()
+      // })
       
-      document.getElementById("loadProfileBtn").addEventListener("click", () => {
-        stateFalse()
-      })
+      // document.getElementById("loadProfileBtn").addEventListener("click", () => {
+      //   stateFalse()
+      // })
 
     // ! Onclick toggle event
     backupBtn.addEventListener("click", () => {
@@ -272,7 +339,8 @@ function giveBackupParams() {
         stateTrue()
         console.log(state)
         showState()
-        testFunc()
+        let passedState = getParamState()
+        testFunc(passedState)
       } else
       if(state === true) {
         stateFalse()

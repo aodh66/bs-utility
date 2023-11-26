@@ -59,14 +59,17 @@ const createWindow = () => {
     // ! Test Area =========================================================================
 
   ipcMain.handle('backupSave', async (event, backupParams) => {
+    // todo needs a check to make sure there are filepaths
     console.log(backupParams)
     console.log(backupParams.folderPath)
     // Save backup filepath and modify receptacle with chosen snapshot name
     const folderPath = backupParams.folderPath;
-    const saveDir = 'PLACEHOLDER' //backupParams.currentNumb
+    const saveDir = backupParams.currentNumb
     const saveDirString = `Backup ${saveDir}`
     const savePath = backupParams.savePath + '\\' +saveDirString;
-
+    
+    // ! Tester with no save call
+    // return backupParams;
     // Filesystem method and function to copy files from backupPath to savePath recursively
     // Returns nothing directly, can call the Main to Renderer message function mainResponse
     // to return a value, or can just return true to more simply do the same thing
