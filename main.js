@@ -10,7 +10,6 @@ const {
 } = require("electron");
 const path = require("node:path");
 const fs = require("node:fs");
-const { CronJob } = require('cron');
 
 // * =================================
 // * Create Main Program Window
@@ -24,7 +23,7 @@ const createWindow = () => {
       enableRemoteModule: true,
     },
   });
-  
+
   // * =================================
   // * Main app functionality
   // * =================================
@@ -40,38 +39,29 @@ const createWindow = () => {
       return filePaths[0];
     }
   });
-  
-  // ! TEST Backupstate and cron functionality, need to find a way to pass in params or 
-  // ! create the job inside the handler or it's doomed
-  // ! if it doesn't work out, look at cron standalone funcitons like cron.sendAt()
-  // ! if that still doesn't work look at the below concept, which could maybe even work with just setTimeout
-  
-  
-  // ! let stopped = false
-  
-  // ! // infinite loop
-  // ! while(!stopped) {
-    // !   let res = await fetch('api link') 
-    // !   if (res.something) stopped = true // stop when you want
-    // ! }
-    
-    
-    // ! Test Area =========================================================================
 
-  ipcMain.handle('backupSave', async (event, backupParams) => {
+  // * Function to back up a donator folder to a given folder subfolder with a given name
+  // * Runs on rolling backup
+  // * Returns the parameters given to it
+  ipcMain.handle("backupSave", async (event, backupParams) => {
     // todo needs a check to make sure there are filepaths
-    console.log(backupParams)
-    console.log(backupParams.folderPath)
+    // ! Debug
+    console.log("Backing up");
+    // console.log(backupParams)
+    // console.log(backupParams.folderPath)
     // Save backup filepath and modify receptacle with chosen snapshot name
     const folderPath = backupParams.folderPath;
-    const saveDir = `Backup ${backupParams.currentNumb}`
-    const savePath = backupParams.savePath + '\\' + saveDir;
-    
+    const saveDir = `Backup ${backupParams.currentNumb}`;
+    const savePath = backupParams.savePath + "\\" + saveDir;
+
     // ! Tester with no save call
+    // ! ======================================================================================
+    // ! CURRENTLY DISABLED
+    // ! ======================================================================================
     return backupParams;
-    // Filesystem method and function to copy files from backupPath to savePath recursively
+    // Filesystem method and function to copy files from folderPath to savePath recursively
     // Returns nothing directly, can call the Main to Renderer message function mainResponse
-    // to return a value, or can just return true to more simply do the same thing
+    // to return a value, or can just return its params to more simply do the same thing
     fs.cp(folderPath, savePath, { recursive: true }, (err) => {
       if (err) {
         throw err;
@@ -81,100 +71,8 @@ const createWindow = () => {
     });
     // ! Simple way to return true
     return backupParams;
-  })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // let backupState = false
-  // console.log(`main start status ${backupState}`)
-  // const rollingBackup = new CronJob(
-  //   '* * * * * *', // cronTime
-  //   function () {
-  //     win.webContents.sendToFrame('backupParams', 'give')
-  //     ipcMain.on('backupParams', (_event, value) => {
-  //       console.log(value) // will print value to Node console
-  //     })
-  //     console.log(`Every second ${lmao}`);
-  //   }, // onTick
-  //   null, // onComplete
-  // );
-
-
-  
-  // // * Function to initiate rolling backup of a folder
-  // // * Runs when backup button is clicked
-  // // * Returns a boolean, true if it executed and saved
-  // function backupHandler(_event, backupParams) {
-  //   // Save backup filepath and modify receptacle with chosen snapshot name
-  //   const backupPath = backupParams.folderPath;
-  //   const savePath =
-  //   backupParams.savePath + "\\"; // TODO + INSERT FOLDER NAME FROM MATH;
-  //   backupState = backupParams.state
-  //   const frequency = backupParams.frequency
-  //   const number = backupParams.number
-  //   console.log(`main call status ${backupState}`)
-
-  //   if(backupState === true) {
-  //     console.log('backing up')
-  //     rollingBackup.start()
-  //   } else
-  //   if(backupState === false) {
-  //     rollingBackup.stop()
-  //   }
-    
-  //   // function rollingBackup(backupState){
-  //   //   // do whatever you like here
-  //   //   if(backupState === true) {
-  //   //     console.log('backing up')
-  //   //     rollingBackup.start()
-  //   //   } else
-  //   //   if(backupState === false) {
-  //   //     return false
-  //   //   }
-  //   // }
-  //   // rollingBackup();
-  // }
-  //   ipcMain.on("backup", backupHandler) 
-
-
-  //   // // Filesystem method and function to copy files from backupPath to savePath recursively
-  //   // // Returns nothing directly, can call the Main to Renderer message function mainResponse
-  //   // // to return a value, or can just return true to more simply do the same thing
-  //   // fs.cp(backupPath, savePath, { recursive: true }, (err) => {
-  //   //   if (err) {
-  //   //     throw err;
-  //   //   }
-  //   //   // ! Message way to return true
-  //   //   // win.webContents.send('mainResponse', true)
-  //   // });
-  //   // // ! Simple way to return true
-  //   // return true;
-  // // });
-// ! Test Area =========================================================================
-
-
-
-
-
-
-
-
-
-
-
-
+    // ! ======================================================================================
+  });
 
   // * Function to save a snapshot (manual backup instance) of a folder with a custom name
   // * Runs when snapshot save button is clicked
@@ -185,6 +83,11 @@ const createWindow = () => {
     const savePath =
       snapshotParams.savePath + "\\" + snapshotParams.snapshotName;
 
+    // ! Tester with no save call
+    // ! ======================================================================================
+    // ! CURRENTLY DISABLED
+    // ! ======================================================================================
+    return true;
     // Filesystem method and function to copy files from backupPath to savePath recursively
     // Returns nothing directly, can call the Main to Renderer message function mainResponse
     // to return a value, or can just return true to more simply do the same thing
@@ -197,8 +100,9 @@ const createWindow = () => {
     });
     // ! Simple way to return true
     return true;
+    // ! ======================================================================================
   });
-  
+
   // * Function to set a hotkey that calls for snapshot Param data from renderer
   // * Runs when hotkey save button is clicked
   // * Returns a boolean, true if it executed and saved
@@ -228,6 +132,11 @@ const createWindow = () => {
     const backupPath = value.folderPath;
     const savePath = value.savePath + "\\" + value.snapshotName;
 
+    // ! Tester with no save call
+    // ! ======================================================================================
+    // ! CURRENTLY DISABLED
+    // ! ======================================================================================
+    return backupParams;
     // Filesystem method and function to copy files from backupPath to savePath recursively
     // Returns nothing directly, calls the Main to Renderer message function mainResponse
     // to return true
@@ -243,6 +152,7 @@ const createWindow = () => {
         console.log(err);
       }
     });
+    // ! ======================================================================================
   });
 
   // * =================================
