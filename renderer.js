@@ -21,7 +21,7 @@ const backupBtn = document.getElementById("backup-btn");
 const backupStatusLight = document.getElementById("backup-status-light");
 const backupMessage = document.getElementById("backupMessage");
 // Snapshot Elements
-const snapshotSection = document.getElementById("snapshotSection")
+const snapshotSection = document.getElementById("snapshotSection");
 const snapshotPathBtn = document.getElementById("snapshot-save-path-btn");
 const snapshotPathElement = document.getElementById("snapshotSavePath");
 const snapshotMessageElement = document.getElementById("snapshotMessage");
@@ -45,11 +45,9 @@ backupNumber.value = 2;
 // TODO backupNumber.value = `${ConfigValue}`
 // Populate Snapshot UI values
 snapshotHotkeyElement.value = `Ctrl+0`;
-snapshotName.value = 'Snapshot'
+snapshotName.value = "Snapshot";
 // TODO snapshotHotkeyBtn.value = `${ConfigValue}`
 // TODO snapshotPathElement.innerText = `${ConfigValue}`
-
-
 
 // * ==============================
 // * Backup Section
@@ -208,8 +206,11 @@ backupBtn.addEventListener("click", () => {
       // ! Debug
       // ? DELETE
       // console.log('Provide filepaths')
-      if (backupSection.classList[backupSection.classList.length-1] != 'errorsection') {
-        backupSection.classList.toggle('errorsection')
+      if (
+        backupSection.classList[backupSection.classList.length - 1] !=
+        "errorsection"
+      ) {
+        backupSection.classList.toggle("errorsection");
       }
       backupMessage.innerText = `Provide folders to backup`;
       backupStateFalse();
@@ -221,8 +222,11 @@ backupBtn.addEventListener("click", () => {
       // ! Debug
       // ? DELETE
       // console.log('You cannot back a folder up into itself')
-      if (backupSection.classList[backupSection.classList.length-1] != 'errorsection') {
-        backupSection.classList.toggle('errorsection')
+      if (
+        backupSection.classList[backupSection.classList.length - 1] !=
+        "errorsection"
+      ) {
+        backupSection.classList.toggle("errorsection");
       }
       backupMessage.innerText = `You cannot back a folder up into itself`;
       backupStateFalse();
@@ -234,8 +238,11 @@ backupBtn.addEventListener("click", () => {
       // ! Debug
       // ? DELETE
       // console.log('You cannot have <=0 backup frequency, or less than 1 backup')
-      if (backupSection.classList[backupSection.classList.length-1] != 'errorsection') {
-        backupSection.classList.toggle('errorsection')
+      if (
+        backupSection.classList[backupSection.classList.length - 1] !=
+        "errorsection"
+      ) {
+        backupSection.classList.toggle("errorsection");
       }
       backupMessage.innerText = `You cannot have <=0 backup frequency, or less than 1 backup`;
       backupTime.value = 10;
@@ -245,8 +252,11 @@ backupBtn.addEventListener("click", () => {
       return;
     }
     // If UI color was error mode, change it back to normal
-    if (backupSection.classList[backupSection.classList.length-1] == 'errorsection') {
-      backupSection.classList.toggle('errorsection')
+    if (
+      backupSection.classList[backupSection.classList.length - 1] ==
+      "errorsection"
+    ) {
+      backupSection.classList.toggle("errorsection");
     }
 
     // Start Backup
@@ -285,32 +295,41 @@ snapshotBtn.addEventListener("click", async () => {
   // get current paths and filenames in param object
   const snapshotParams = giveSnapshotParams();
 
-      // If no filepaths are provided, ask for them, change UI color, display error
-      if (!snapshotParams.folderPath || !snapshotParams.savePath) {
-        // ! Debug
-        // ? DELETE
-        // console.log('Provide filepaths')
-        if (snapshotSection.classList[snapshotSection.classList.length-1] != 'errorsection') {
-          snapshotSection.classList.toggle('errorsection')
-        }
-        snapshotMessageElement.innerText = `Provide folders to backup`;
-        return;
-      }
-      // Prevent trying to backup to the same filepath, change UI color, display error
-      if (snapshotParams.folderPath == snapshotParams.savePath) {
-        // ! Debug
-        // ? DELETE
-        // console.log('You cannot back a folder up into itself')
-        if (snapshotSection.classList[snapshotSection.classList.length-1] != 'errorsection') {
-          snapshotSection.classList.toggle('errorsection')
-        }
-        snapshotMessageElement.innerText = `You cannot back a folder up into itself`;
-        return;
-      }
-      // If UI color was error mode, change it back to normal
-      if (snapshotSection.classList[snapshotSection.classList.length-1] == 'errorsection') {
-        snapshotSection.classList.toggle('errorsection')
-      }
+  // If no filepaths are provided, ask for them, change UI color, display error
+  if (!snapshotParams.folderPath || !snapshotParams.savePath) {
+    // ! Debug
+    // ? DELETE
+    // console.log('Provide filepaths')
+    if (
+      snapshotSection.classList[snapshotSection.classList.length - 1] !=
+      "errorsection"
+    ) {
+      snapshotSection.classList.toggle("errorsection");
+    }
+    snapshotMessageElement.innerText = `Provide folders to backup`;
+    return;
+  }
+  // Prevent trying to backup to the same filepath, change UI color, display error
+  if (snapshotParams.folderPath == snapshotParams.savePath) {
+    // ! Debug
+    // ? DELETE
+    // console.log('You cannot back a folder up into itself')
+    if (
+      snapshotSection.classList[snapshotSection.classList.length - 1] !=
+      "errorsection"
+    ) {
+      snapshotSection.classList.toggle("errorsection");
+    }
+    snapshotMessageElement.innerText = `You cannot back a folder up into itself`;
+    return;
+  }
+  // If UI color was error mode, change it back to normal
+  if (
+    snapshotSection.classList[snapshotSection.classList.length - 1] ==
+    "errorsection"
+  ) {
+    snapshotSection.classList.toggle("errorsection");
+  }
 
   //! Simple response method
   // call snapshot function in main and await a positive response
@@ -362,32 +381,41 @@ async function handler(event) {
 window.myAPI.sendSnapshotParams((event, value) => {
   const snapshotParams = giveSnapshotParams();
 
-        // If no filepaths are provided, ask for them, change UI color, display error
-        if (!snapshotParams.folderPath || !snapshotParams.savePath) {
-          // ! Debug
-          // ? DELETE
-          // console.log('Provide filepaths')
-          if (snapshotSection.classList[snapshotSection.classList.length-1] != 'errorsection') {
-            snapshotSection.classList.toggle('errorsection')
-          }
-          snapshotMessageElement.innerText = `Provide folders to backup`;
-          return;
-        }
-        // Prevent trying to backup to the same filepath, change UI color, display error
-        if (snapshotParams.folderPath == snapshotParams.savePath) {
-          // ! Debug
-          // ? DELETE
-          // console.log('You cannot back a folder up into itself')
-          if (snapshotSection.classList[snapshotSection.classList.length-1] != 'errorsection') {
-            snapshotSection.classList.toggle('errorsection')
-          }
-          snapshotMessageElement.innerText = `You cannot back a folder up into itself`;
-          return;
-        }
-        // If UI color was error mode, change it back to normal
-        if (snapshotSection.classList[snapshotSection.classList.length-1] == 'errorsection') {
-          snapshotSection.classList.toggle('errorsection')
-        }
+  // If no filepaths are provided, ask for them, change UI color, display error
+  if (!snapshotParams.folderPath || !snapshotParams.savePath) {
+    // ! Debug
+    // ? DELETE
+    // console.log('Provide filepaths')
+    if (
+      snapshotSection.classList[snapshotSection.classList.length - 1] !=
+      "errorsection"
+    ) {
+      snapshotSection.classList.toggle("errorsection");
+    }
+    snapshotMessageElement.innerText = `Provide folders to backup`;
+    return;
+  }
+  // Prevent trying to backup to the same filepath, change UI color, display error
+  if (snapshotParams.folderPath == snapshotParams.savePath) {
+    // ! Debug
+    // ? DELETE
+    // console.log('You cannot back a folder up into itself')
+    if (
+      snapshotSection.classList[snapshotSection.classList.length - 1] !=
+      "errorsection"
+    ) {
+      snapshotSection.classList.toggle("errorsection");
+    }
+    snapshotMessageElement.innerText = `You cannot back a folder up into itself`;
+    return;
+  }
+  // If UI color was error mode, change it back to normal
+  if (
+    snapshotSection.classList[snapshotSection.classList.length - 1] ==
+    "errorsection"
+  ) {
+    snapshotSection.classList.toggle("errorsection");
+  }
 
   event.sender.send("sentParams", snapshotParams);
 });
@@ -398,30 +426,76 @@ window.myAPI.sendSnapshotParams((event, value) => {
 // TODO
 // Maybe just open the full dialogue to save a file for profiles and then load the same file with the full window dialogue
 // Profile Elements
-const profileSection = document.getElementById("profileSection")
+const profileSection = document.getElementById("profileSection");
 const profileNameElement = document.getElementById("profile-name-box");
 const profileSaveBtn = document.getElementById("saveProfileBtn");
 const profileLoadBtn = document.getElementById("loadProfileBtn");
 const profileMessageElement = document.getElementById("profileMessage");
-profileNameElement.value = 'placeholderProfile'
-let placeholderProfile = 'placeholderProfile'
-profileMessageElement.innerText = `Profile ${placeholderProfile} Loaded`
+profileNameElement.value = "placeholderProfile";
+let placeholderProfile = "placeholderProfile";
+profileMessageElement.innerText = `Profile ${placeholderProfile} Loaded`;
 
 function getProfileData() {
   return {
-    name: profileNameElement.value,
-    folderPath: folderPathElement.innerText,
-    savePath: snapshotPathElement.innerText,
+    profileName: profileNameElement.value,
+    backupFolderPath: folderPathElement.innerText,
+    backupSavePath: savePathElement.innerText,
+    backupFrequency: backupTime.value,
+    backupNumber: backupNumber.value,
+    snapshotSavePath: snapshotPathElement.innerText,
+    snapshotHotkey: snapshotHotkeyElement.value,
     snapshotName: snapshotName.value,
   };
 }
+// ! Debug
+// ? DELETE
+// console.log(getProfileData())
 
 // * Profile Save Onclick
 profileSaveBtn.addEventListener("click", async () => {
-  
-})
+  const profileData = getProfileData();
+  // ! Debug
+  // ? DELETE
+  // console.log(profileData)
+
+  // Prevent having no profile name, change UI color, display error
+  if (!profileData.profileName) {
+    // ! Debug
+    // ? DELETE
+    // console.log('You must have a profile name')
+    if (
+      profileSection.classList[profileSection.classList.length - 1] !=
+      "errorsection"
+    ) {
+      profileSection.classList.toggle("errorsection");
+    }
+    profileMessageElement.innerText = `You must have a profile name`;
+    return;
+  }
+  // If UI color was error mode, change it back to normal
+  if (
+    profileSection.classList[profileSection.classList.length - 1] ==
+    "errorsection"
+  ) {
+    profileSection.classList.toggle("errorsection");
+  }
+
+  // //! Simple response method
+  // // call snapshot function in main and await a positive response
+  // const status = await window.myAPI.saveSnapshot(snapshotParams);
+
+  // // on positive response, display message to the user on save status
+  // if (status === true) {
+  //   snapshotMessageElement.innerText = `${snapshotParams.snapshotName} Snapshot Taken`;
+  // } else {
+  //   snapshotMessageElement.innerText = `Error Taking Snapshot`;
+  // }
+});
 
 // * Profile Load Onclick
 profileLoadBtn.addEventListener("click", async () => {
-
-})
+  // ! Debug
+  // ? DELETE
+  // const profileData2 = getProfileData()
+  // console.log(profileData2)
+});

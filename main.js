@@ -183,7 +183,9 @@ const createWindow = () => {
     // ! ======================================================================================
     // ! CURRENTLY DISABLED
     // ! ======================================================================================
-    return value;
+    // return value;
+    win.webContents.send("mainResponse", true);
+    return
     // Filesystem method and function to copy files from backupPath to savePath recursively
     // Returns nothing directly, calls the Main to Renderer message function mainResponse
     // to return true
