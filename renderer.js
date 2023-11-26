@@ -447,13 +447,25 @@ function getProfileData() {
     snapshotName: snapshotName.value,
   };
 }
+
+function setProfileData(loadedProfile) {
+  profileNameElement.value = loadedProfile.profileName;
+  folderPathElement.innerText = loadedProfile.backupFolderPath;
+  savePathElement.innerText = loadedProfile.backupSavePath;
+  backupTime.value = loadedProfile.backupFrequency;
+  backupNumber.value = loadedProfile.backupNumber;
+  snapshotPathElement.innerText = loadedProfile.snapshotSavePath;
+  snapshotHotkeyElement.value = loadedProfile.snapshotHotkey;
+  snapshotName.value = loadedProfile.snapshotName;
+}
+
 // ! Debug
 // ? DELETE
 // console.log(getProfileData())
 
 // * Profile Save Onclick
 profileSaveBtn.addEventListener("click", async () => {
-  const profileData = getProfileData();
+  let profileData = getProfileData();
   // ! Debug
   // ? DELETE
   // console.log(profileData)
@@ -480,22 +492,56 @@ profileSaveBtn.addEventListener("click", async () => {
     profileSection.classList.toggle("errorsection");
   }
 
-  // //! Simple response method
-  // // call snapshot function in main and await a positive response
-  // const status = await window.myAPI.saveSnapshot(snapshotParams);
+  //! Simple response method
+  // call profile save function in main and await a positive response
+  const status = await window.myAPI.saveProfile(profileData);
 
-  // // on positive response, display message to the user on save status
-  // if (status === true) {
-  //   snapshotMessageElement.innerText = `${snapshotParams.snapshotName} Snapshot Taken`;
-  // } else {
-  //   snapshotMessageElement.innerText = `Error Taking Snapshot`;
-  // }
+  // on positive response, display message to the user on save status
+  if (status === true) {
+    profileMessageElement.innerText = `${profileData.profileName} Profile Saved`;
+  } else {
+    profileMessageElement.innerText = `Error Saving Profile`;
+  }
 });
 
 // * Profile Load Onclick
 profileLoadBtn.addEventListener("click", async () => {
   // ! Debug
   // ? DELETE
-  // const profileData2 = getProfileData()
-  // console.log(profileData2)
+  const profileRequest = getProfileData().profileName;
+  // console.log(profileRequest)
+
+  // Prevent having no profile name, change UI color, display error
+  if (!profileRequest) {
+    // ! Debug
+    // ? DELETE
+    // console.log('You must enter a profile name to load one')
+    if (
+      profileSection.classList[profileSection.classList.length - 1] !=
+      "errorsection"
+    ) {
+      profileSection.classList.toggle("errorsection");
+    }
+    profileMessageElement.innerText = `You must enter a profile name to load one`;
+    return;
+  }
+  // If UI color was error mode, change it back to normal
+  if (
+    profileSection.classList[profileSection.classList.length - 1] ==
+    "errorsection"
+  ) {
+    profileSection.classList.toggle("errorsection");
+  }
+
+  //! Simple response method
+  // call profile save function in main and await a positive response
+  const status = await window.myAPI.loadProfile(profileRequest);
+
+  // on positive response, display message to the user on save status
+  if (status) {
+    setProfileData(status)
+    profileMessageElement.innerText = `${profileRequest} Profile Loaded`;
+  } else {
+    profileMessageElement.innerText = `Error Loading Profile`;
+  }
 });

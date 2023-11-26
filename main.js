@@ -210,7 +210,36 @@ const createWindow = () => {
   // ! ======================================================================================
   // ! Under Construction
   // ! ======================================================================================
-  // * Config file saving and loading
+  // TODO Config file saving and loading
+  // * Function that saves a profile onclick
+  // * Runs when save profile button is clicked
+  // * Returns a boolean
+  ipcMain.handle('saveProfile', async (event, sentProfileData) => {
+    console.log('sent profile data', sentProfileData)
+    let profileSaveData = JSON.stringify(sentProfileData);
+    fs.writeFileSync(`profiles\\${sentProfileData.profileName}.json`, profileSaveData);
+    let profileStateData = JSON.stringify(sentProfileData.profileName);
+    fs.writeFileSync('config.json', profileStateData);
+    return true;
+  });
+  
+  // * Function that loads a profile onclick
+  // * Runs when load profile button is clicked
+  // * Returns profile data from json
+  ipcMain.handle('loadProfile', async (event, sentProfileRequest) => {
+    console.log('sent profile request', sentProfileRequest)
+    let rawProfileData = fs.readFileSync(`profiles\\${sentProfileRequest}.json`);
+    let profileDataToLoad = JSON.parse(rawProfileData);
+    console.log('profile data json to send', profileDataToLoad);
+    let profileStateData = JSON.stringify(sentProfileRequest);
+    fs.writeFileSync('config.json', profileStateData);
+  return profileDataToLoad
+});
+
+
+
+
+  // TODO PLACE THESE FUNCTIONS WHERE THEY NEED TO BE 
   // Filesystem method and function to write the last profile used
   let placeholderData = {
     profileName: 'PlaceholderFile'
@@ -229,15 +258,14 @@ const createWindow = () => {
     profileData: 'lotsofdata',
   }
   let profileSaveData = JSON.stringify(placeholderProfileData);
-  fs.writeFileSync(`${placeholderProfileData.profileName}.json`, profileSaveData);
+  fs.writeFileSync(`profiles\\${placeholderProfileData.profileName}.json`, profileSaveData);
   
   // Filesystem method and function to read profile data
   let profileToRead = 'PlaceholderProfile'
-  let rawProfileData = fs.readFileSync(`${profileToRead}.json`);
+  let rawProfileData = fs.readFileSync(`profiles\\${profileToRead}.json`);
   let profileDataToLoad = JSON.parse(rawProfileData);
   console.log('profile data json', profileDataToLoad);
   
-  
 
 
 
@@ -245,23 +273,6 @@ const createWindow = () => {
 
 
 
-
-
-  // Filesystem method and function to write the given element to a file
-  // let fileContent = {
-  //   profileName:'PlaceholderFile'
-  // }
-  // fs.writeFile(`${fileContent.profileName}.txt`, `${fileContent}`, function (err) {
-  //   if (err) throw err;
-  //   console.log(`Saved ${fileContent.profileName} Profile`);
-  // });
-
-  // Filesystem method and function to write the given element to a file
-  // fs.readFile('file.txt', function(err, data) {
-  //   res.writeHead(200, {'Content-Type': 'text/html'});
-  //   res.write(data);
-  //   return res.end();
-  // });
   
   
   

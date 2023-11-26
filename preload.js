@@ -23,9 +23,15 @@ contextBridge.exposeInMainWorld("myAPI", {
   // Takes the data from backupParams, starts backing up, returns the params
   backupSave: (backupParams) =>
   ipcRenderer.invoke("backupSave", backupParams),
-  // Currently Unused Takes the data from snapshotparams, sets the hotkey, and returns a boolean
+  // Takes the data from snapshotparams, sets the hotkey, and returns a boolean
   saveSnapshotHotkey: (snapshotParams) =>
     ipcRenderer.invoke("saveSnapshotHotkey", snapshotParams),
+  // Takes the data from profileData, saves a profile, and returns a boolean
+  saveProfile: (profileData) =>
+    ipcRenderer.invoke("saveProfile", profileData),
+  // Takes the data from profileRequested, reads that profile, and returns its data
+  loadProfile: (profileRequested) =>
+    ipcRenderer.invoke("loadProfile", profileRequested),
     // Currently Unused Sends a value from Main to Renderer through the mainResponse channel (intended instead of the boolean, but can be used for other things)
     mainResponse: (mainResponse) => ipcRenderer.on("mainResponse", mainResponse),
 });
