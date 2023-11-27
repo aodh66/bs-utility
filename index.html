@@ -25,10 +25,10 @@
           name it, as the backups themselves will simply be named backup# -->
       <h2 class="backup-title section-title">Rolling Backup</h2>
       <p>Folder to Backup: <strong id="folderPath"></strong></p>
-      <button type="button" id="backup-folder-path-btn">Choose folder to backup</button>
+      <button type="button" id="backup-folder-path-btn" class="button">Choose folder to backup</button>
 
       <p>Backup Location: <strong id="folderSavePath"></strong></p>
-      <button type="button" id="backup-folder-save-path-btn">Choose a location to save backups</button>
+      <button type="button" id="backup-folder-save-path-btn" class="button">Choose a location to save backups</button>
 
       <p>Backup Frequency (mins):
       <input id="backup-time" type="number" placeholder="10">
@@ -40,6 +40,7 @@
       <!-- Backup Button -->
       <button type="button" class="button" id="backup-btn">Start Backup</button>
       <p>backupStatus = <strong id="backup-status-light"></strong></p>
+      <div class="backup-light" id="backupLight"></div>
       <p>Notifications:</p>
       <p><strong id="backupMessage"></strong></p>
     </div>
@@ -49,7 +50,7 @@
       <h2 class="snapshot-title section-title">Snapshot</h2>
       
       <p>Snapshot Backup Location: <strong id="snapshotSavePath"></strong></p>
-      <button type="button" id="snapshot-save-path-btn">Choose a location to save snapshots</button>
+      <button type="button" id="snapshot-save-path-btn" class="button">Choose a location to save snapshots</button>
       
       <p><a href="https://www.electronjs.org/docs/latest/api/accelerator" target="_blank">Hotkey</a> to snapshot:
         <input id="snapshot-hotkey-box" type="text" placeholder="Ctrl+0">
