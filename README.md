@@ -23,14 +23,14 @@ The intent of this project is to be lightweight and simple. Despite the tongue i
 ## Installation
 
 ## Usage Instructions
-There are multiple functions that the app can perform. Rolling Backups, Snapshots(A single instance of a backup) and Profile saving.
+There are multiple functions that the utility can perform. Rolling Backups, Snapshots (A single instance of a backup) and Profile saving.
 
 ### Rolling Backups
 To initiate a rolling backup, choose a folder to backup and a location to save backups. The location you save the backups to should have a memorable name, as the backups themselves will be named 'Backup #'.
 
 NOTE: If you put backups of different games into one folder, they WILL overwrite eachother.
 
-Input your desired backup frequency in minutes, and the number of backups you want to keep. The app will then back up that many instances and cycle through the number you have chosen. The Backup Status light will show green and the button will read 'Stop Backup' when backups are in progress. They will show red and the button will read 'Start Backup' when backups not in progress. If you change the backup parameters while a backup is in progress, it will exit the next time it tries to backup.
+Input your desired backup frequency in minutes, and the number of backups you want to keep. The app will then back up that many instances and cycle through the number you have chosen. The 'Backup Status' light will show green and the button will read 'Stop Backup' when backups are in progress. The light will show red and the button will read 'Start Backup' when backups are not in progress. If you stop a backup between instances, it will exit the next time it tries to backup.
 
 ### Snapshots
 To initiate a snapshot, choose a folder to backup IN THE BACKUP SECTION and a location to save snapshots IN THE SNAPSHOT SECTION. The snapshot will be named whatever you have entered under Snapshot name. When the snapshot has been saved, '<snapshot name> Snapshot Saved' will be displayed.
@@ -40,7 +40,7 @@ NOTE: If you call snapshots the same thing and save them in the same folder, the
 NOTE: If you are using this to backup games, do not make a snapshot while the game is autosaving, if it is a streamed autosave, the snapshot could end up being corrupted, as the app has no way to know if the game is done or not. It will simply snapshot the game save's state when it is asked.
 
 ### Snapshot Hotkeys
-To designate a hotkey type the key into the hotkey box and press the 'Register Hotkey' button. Hotkeys and modifiers need to be entered into the box in the format shown by default with no spaces, capitals at the start of words, and separated by a + sign. If you wanted to hit Control, Shift, U to snapshot, you would enter either of the following into the box: Ctrl+Shift+U or Control+Shift+U. For a full list of snapshot hotkey options, refer to the available modifiers and keycodes [listed here](https://www.electronjs.org/docs/latest/api/accelerator). When the snapshot has been saved, '<snapshot name> Snapshot Saved' will still be displayed like when the button is clicked.
+To designate a hotkey type the key into the hotkey box and press the 'Register Hotkey' button. Hotkeys and modifiers need to be entered into the box in the format shown by default with no spaces, capitals at the start of words, and separated by a + sign. If you wanted to hit Control, Shift, U to snapshot, you would enter either of the following into the box: Ctrl+Shift+U or Control+Shift+U. For a full list of snapshot hotkey options, refer to the available modifiers and keycodes [listed here](https://www.electronjs.org/docs/latest/api/accelerator). When the hotkey is registered, <snapshot name> Hotkey Registered' will be displayed. When the snapshot has been saved, '<snapshot name> Snapshot Saved' will still be displayed like when the snapshot button is clicked.
 
 NOTE: When you click 'Register Hotkey', it will unregister any hotkeys you already have saved.
 
