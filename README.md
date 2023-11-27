@@ -37,6 +37,8 @@ To initiate a snapshot, choose a folder to backup IN THE BACKUP SECTION and a lo
 
 NOTE: If you call snapshots the same thing and save them in the same folder, they WILL overwrite eachother. I would still recommend having different snapshot folders for different purposes.
 
+NOTE: If you are using this to backup games, do not make a snapshot while the game is autosaving, if it is a streamed autosave, the snapshot could end up being corrupted, as the app has no way to know if the game is done or not. It will simply snapshot the game save's state when it is asked.
+
 ### Snapshot Hotkeys
 To designate a hotkey type the key into the hotkey box and press the 'Register Hotkey' button. Hotkeys and modifiers need to be entered into the box in the format shown by default with no spaces, capitals at the start of words, and separated by a + sign. If you wanted to hit Control, Shift, U to snapshot, you would enter either of the following into the box: Ctrl+Shift+U or Control+Shift+U. For a full list of snapshot hotkey options, refer to the available modifiers and keycodes [listed here](https://www.electronjs.org/docs/latest/api/accelerator). When the snapshot has been saved, '<snapshot name> Snapshot Saved' will still be displayed like when the button is clicked.
 

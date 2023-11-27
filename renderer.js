@@ -120,6 +120,7 @@ saveBtn.addEventListener("click", async () => {
 // Initialise backup states
 let backupState = false;
 let currentNumb = 1;
+let backupInstance = 1;
 
 // Change backup states
 // Function to set backup state to true
@@ -137,6 +138,11 @@ function showBackupState() {
 }
 showBackupState();
 
+// Function to increment backupInstance
+function backupInstancePlus() {
+  backupInstance = backupInstance + 1;
+}
+
 // * Function to pull current Backup Params
 function getBackupParams() {
   return {
@@ -146,6 +152,7 @@ function getBackupParams() {
     frequency: backupTime.value,
     currentNumb: currentNumb,
     state: backupState,
+    instance: backupInstance,
   };
 }
 
@@ -184,6 +191,7 @@ async function testFunc(inputState) {
     frequency: backupTime.value,
     currentNumb: currentNumb,
     state: backupState,
+    instance: backupInstance,
   };
 
   // ! Debug
@@ -209,14 +217,10 @@ async function testFunc(inputState) {
     return;
   }
 
-  // Check to exit function on next call, if params have been changed in UI
+  // Check to exit function on next call, if it's not the same instance as when first called
   // Stops it running forever in background if backup is disabled, params are changed
   // and backup is restarted in between calls
-  if (
-    status.folderPath != inputState.folderPath ||
-    status.savePath != inputState.savePath ||
-    status.frequency != inputState.frequency
-  ) {
+  if (inputState.instance != paramState.instance) {
     // ! Debug
     // ? DELETE
     // console.log('negatory')
@@ -249,6 +253,7 @@ backupBtn.addEventListener("click", () => {
     // ? DELETE
     // console.log(state)
     showBackupState();
+    backupInstancePlus();
     let passedState = getBackupParams();
 
     // If no filepaths are provided, ask for them, change UI color, display error

@@ -40,28 +40,30 @@
       <!-- Backup Button -->
       <button type="button" class="button" id="backup-btn">Start Backup</button>
       <p>backupStatus = <strong id="backup-status-light"></strong></p>
+      <p>Notifications:</p>
       <p><strong id="backupMessage"></strong></p>
     </div>
-
+    
     <!-- * Snapshot Section -->
     <div class="snapshot-section section" id="snapshotSection">
       <h2 class="snapshot-title section-title">Snapshot</h2>
-
+      
       <p>Snapshot Backup Location: <strong id="snapshotSavePath"></strong></p>
       <button type="button" id="snapshot-save-path-btn">Choose a location to save snapshots</button>
-
+      
       <p><a href="https://www.electronjs.org/docs/latest/api/accelerator" target="_blank">Hotkey</a> to snapshot:
-      <input id="snapshot-hotkey-box" type="text" placeholder="Ctrl+0">
+        <input id="snapshot-hotkey-box" type="text" placeholder="Ctrl+0">
       </p>
-
+      
       <p>Snapshot name:
-      <input id="snapshot-name-box" type="text" placeholder="Snapshot Name">
+        <input id="snapshot-name-box" type="text" placeholder="Snapshot Name">
       </p>
       <button class="button" id="snapshotHotkeyBtn">Register Hotkey</button>
       <p><strong id="snapshotHotkeyMessage"></strong></p>
       
       <!-- Snapshot Button -->
       <button class="button" id="snapshotBtn">Snapshot</button>
+      <p>Notifications:</p>
       <p><strong id="snapshotMessage"></strong></p>
     </div>
     
@@ -69,17 +71,18 @@
     <div class="profile-seciton section" id="profileSection">
       <h2 class="profile-title section-title">Profiles</h2>
       <p>Profile name:
-      <input id="profile-name-box" type="text" placeholder="ProfileName">
+        <input id="profile-name-box" type="text" placeholder="ProfileName">
       </p>
       <!-- Save profile -->
       <button class="button" id="saveProfileBtn">Save profile</button>
       
       <!-- Load profile -->
       <button class="button" id="loadProfileBtn">Load profile</button>
+      <p>Notifications:</p>
       <p><strong id="profileMessage"></strong></p>
     </div>
   </main>
-
+  
   <!-- ! Placeholder  -->
   <p id="info">This text will be changed</p>
 </body>
