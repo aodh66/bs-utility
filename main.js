@@ -217,91 +217,65 @@ const createWindow = () => {
     fs.writeFileSync(
       `profiles\\${sentProfileData.profileName}.json`,
       profileSaveData
-      );
-      // Changes config, so saved profile is the last used
-      let profileStateData = JSON.stringify(sentProfileData.profileName);
-      fs.writeFileSync("config.json", profileStateData);
-      // Returns that it saved the profile
-      return true;
-    });
-    
-    // * Function that loads a profile onclick
-    // * Runs when load profile button is clicked
-    // * Returns profile data from json
-    ipcMain.handle("loadProfile", async (event, sentProfileRequest) => {
-      // ! Debug
-      // ? DELETE
-      // console.log("sent profile request", sentProfileRequest);
-      // Loads profile data
-      let rawProfileData = fs.readFileSync(
-        `profiles\\${sentProfileRequest}.json`
-        );
-        let profileDataToLoad = JSON.parse(rawProfileData);
-        // ! Debug
-        // ? DELETE
-        // console.log("profile data json to send", profileDataToLoad);
-        // Changes config, so loaded profile is the last used
-        let profileStateData = JSON.stringify(sentProfileRequest);
-        fs.writeFileSync("config.json", profileStateData);
-        // Returns the profile data
-        return profileDataToLoad;
-      });
-      
-      // * Function that loads the last profile used
-      // * Runs on app start
-      // * Returns profile data from json
-      ipcMain.handle("loadInitialProfile", async (event) => {
-        // Reads config to see what last used profile was
-        let rawProfileStateData = fs.readFileSync("config.json");
-        let profileToLoad = JSON.parse(rawProfileStateData);
-        // ! Debug
-        // ? DELETE
-        // console.log("profile to load", profileToLoad);
-        // Loads last used profile data
-        let rawProfileData = fs.readFileSync(`profiles\\${profileToLoad}.json`);
-        let profileDataToLoad = JSON.parse(rawProfileData);
-        //   // ! Debug
-        //   // ? DELETE
-        //   // console.log("profile data json to send", profileDataToLoad);
-        //   // Changes config, so loaded profile is the last used
-        //   let profileStateData = JSON.stringify(profileToLoad);
-        // fs.writeFileSync("config.json", profileStateData);
-        
-        // Returns the profile data
-        return profileDataToLoad;
-      });
-      
-      // ! ======================================================================================
-      // ! PENDING DELETE
-      // ! ======================================================================================
-      // TODO PLACE THESE FUNCTIONS WHERE THEY NEED TO BE
-      // // Filesystem method and function to write the last profile used
-      // let placeholderData = {
-        //   profileName: 'PlaceholderFile'
-        // }
-        // let profileStateData = JSON.stringify(placeholderData);
-        // fs.writeFileSync('config.json', profileStateData);
-        
-        // // Filesystem method and function to read the last profile used
-        // let rawProfileStateData = fs.readFileSync('config.json');
-        // let profileToLoad = JSON.parse(rawProfileStateData);
-        // console.log('profile state json', profileToLoad);
-        
-        // // Filesystem method and function to save profile data
-        // let placeholderProfileData = {
-          //   profileName: 'PlaceholderProfile',
-          //   profileData: 'lotsofdata',
-          // }
-          // let profileSaveData = JSON.stringify(placeholderProfileData);
-          // fs.writeFileSync(`profiles\\${placeholderProfileData.profileName}.json`, profileSaveData);
-          
-          // // Filesystem method and function to read profile data
-          // let profileToRead = 'PlaceholderProfile'
-          // let rawProfileData = fs.readFileSync(`profiles\\${profileToRead}.json`);
-          // let profileDataToLoad = JSON.parse(rawProfileData);
-          // console.log('profile data json', profileDataToLoad);
+    );
+    // Changes config, so saved profile is the last used
+    let profileStateData = JSON.stringify(sentProfileData.profileName);
+    fs.writeFileSync("config.json", profileStateData);
+    // Returns that it saved the profile
+    return true;
+  });
+
+  // * Function that loads a profile onclick
+  // * Runs when load profile button is clicked
+  // * Returns profile data from json
+  ipcMain.handle("loadProfile", async (event, sentProfileRequest) => {
+    // ! Debug
+    // ? DELETE
+    // console.log("sent profile request", sentProfileRequest);
+    // Loads profile data
+    let rawProfileData = fs.readFileSync(
+      `profiles\\${sentProfileRequest}.json`
+    );
+    let profileDataToLoad = JSON.parse(rawProfileData);
+    // ! Debug
+    // ? DELETE
+    // console.log("profile data json to send", profileDataToLoad);
+    // Changes config, so loaded profile is the last used
+    let profileStateData = JSON.stringify(sentProfileRequest);
+    fs.writeFileSync("config.json", profileStateData);
+    // Returns the profile data
+    return profileDataToLoad;
+  });
+
+  // * Function that loads the last profile used
+  // * Runs on app start
+  // * Returns profile data from json
+  ipcMain.handle("loadInitialProfile", async (event) => {
+    // Reads config to see what last used profile was
+    let rawProfileStateData = fs.readFileSync("config.json");
+    let profileToLoad = JSON.parse(rawProfileStateData);
+    // ! Debug
+    // ? DELETE
+    // console.log("profile to load", profileToLoad);
+    // Loads last used profile data
+    let rawProfileData = fs.readFileSync(`profiles\\${profileToLoad}.json`);
+    let profileDataToLoad = JSON.parse(rawProfileData);
+    //   // ! Debug
+    //   // ? DELETE
+    //   // console.log("profile data json to send", profileDataToLoad);
+    //   // Changes config, so loaded profile is the last used
+    //   let profileStateData = JSON.stringify(profileToLoad);
+    // fs.writeFileSync("config.json", profileStateData);
+
+    // Returns the profile data
+    return profileDataToLoad;
+  });
+
+  // ! ======================================================================================
+  // ! TEST SECTION
   // ! ======================================================================================
 
+  // ! ======================================================================================
 
   // * =================================
   // * Loads the index.html

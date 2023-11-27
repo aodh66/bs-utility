@@ -20,70 +20,90 @@
   <main>
     <!-- * Rolling Backup Section -->
     <div class="backup-section section" id="backupSection">
-      <!-- ! this will take the files from the chosen folder and we will place them inside the 
-          chosen backup folder. In the documentation, tell people to make a backup folder and 
-          name it, as the backups themselves will simply be named backup# -->
       <h2 class="backup-title section-title">Rolling Backup</h2>
+      <!-- Donor Folder -->
       <p>Folder to Backup: <strong id="folderPath"></strong></p>
       <button type="button" id="backup-folder-path-btn" class="button">Choose folder to backup</button>
 
+      <!-- Receptacle Folder -->
       <p>Backup Location: <strong id="folderSavePath"></strong></p>
       <button type="button" id="backup-folder-save-path-btn" class="button">Choose a location to save backups</button>
 
+      <!-- Frequency -->
       <p>Backup Frequency (mins):
-      <input id="backup-time" type="number" placeholder="10">
+        <input id="backup-time" type="number" placeholder="10">
       </p>
+
+      <!-- Number of Backups -->
       <p>Number of Backups:
-      <input id="backup-number" type="number" placeholder="2">
+        <input id="backup-number" type="number" placeholder="2">
       </p>
 
       <!-- Backup Button -->
       <button type="button" class="button" id="backup-btn">Start Backup</button>
-      <p>backupStatus = <strong id="backup-status-light"></strong></p>
-      <div class="backup-light" id="backupLight"></div>
-      <p>Notifications:</p>
-      <p><strong id="backupMessage"></strong></p>
+
+      <!-- Backup Status -->
+      <div class="backup-status">
+        <p>Backup Status<strong id="backup-status-light"></strong></p>
+        <div class="backup-light" id="backupLight"></div>
+      </div>
+
+      <!-- Backup Notifications -->
+      <div class="backup-notifications">
+        <p>Notifications:</p>
+        <p><strong id="backupMessage"></strong></p>
+      </div>
     </div>
-    
+
     <!-- * Snapshot Section -->
     <div class="snapshot-section section" id="snapshotSection">
       <h2 class="snapshot-title section-title">Snapshot</h2>
-      
+
+      <!-- Snapshot Receptacle Folder -->
       <p>Snapshot Backup Location: <strong id="snapshotSavePath"></strong></p>
       <button type="button" id="snapshot-save-path-btn" class="button">Choose a location to save snapshots</button>
-      
+
+      <!-- Hotkey -->
       <p><a href="https://www.electronjs.org/docs/latest/api/accelerator" target="_blank">Hotkey</a> to snapshot:
         <input id="snapshot-hotkey-box" type="text" placeholder="Ctrl+0">
       </p>
-      
+      <button class="button" id="snapshotHotkeyBtn">Register Hotkey</button>
+
+      <!-- Snapshot Name -->
       <p>Snapshot name:
         <input id="snapshot-name-box" type="text" placeholder="Snapshot Name">
       </p>
-      <button class="button" id="snapshotHotkeyBtn">Register Hotkey</button>
-      <p><strong id="snapshotHotkeyMessage"></strong></p>
-      
+
       <!-- Snapshot Button -->
       <button class="button" id="snapshotBtn">Snapshot</button>
-      <p>Notifications:</p>
-      <p><strong id="snapshotMessage"></strong></p>
+
+      <!-- Snapshot Notifications -->
+      <div class="backup-notifications">
+        <p>Notifications:</p>
+        <p><strong id="snapshotHotkeyMessage"></strong></p>
+        <p><strong id="snapshotMessage"></strong></p>
+      </div>
     </div>
-    
+
     <!-- * Profile Section -->
     <div class="profile-seciton section" id="profileSection">
       <h2 class="profile-title section-title">Profiles</h2>
+      <!-- Profile Name -->
       <p>Profile name:
         <input id="profile-name-box" type="text" placeholder="ProfileName">
       </p>
       <!-- Save profile -->
       <button class="button" id="saveProfileBtn">Save profile</button>
-      
+
       <!-- Load profile -->
       <button class="button" id="loadProfileBtn">Load profile</button>
+
+      <!-- Profile Notifications -->
       <p>Notifications:</p>
       <p><strong id="profileMessage"></strong></p>
     </div>
   </main>
-  
+
   <!-- ! Placeholder  -->
   <p id="info">This text will be changed</p>
 </body>

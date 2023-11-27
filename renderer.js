@@ -137,7 +137,7 @@ function backupStateFalse() {
 function showBackupState() {
   backupStatusLight.innerText = `${backupState}`;
 }
-showBackupState();
+// showBackupState();
 
 // Function to increment backupInstance
 function backupInstancePlus() {
@@ -146,18 +146,18 @@ function backupInstancePlus() {
 
 // Function to toggle backup UI to on state (Green light, stop backup text)
 function backupUIOn() {
-  let state = backupState
-  if(state) {
+  let state = backupState;
+  if (state) {
     backupLight.classList.toggle("green-light");
-    backupBtn.innerText = 'Stop Backup';
+    backupBtn.innerText = "Stop Backup";
   }
 }
 
 // Function to toggle backup UI to off state (Green light, stop backup text)
 function backupUIOff() {
-  let state = backupState
-  if(!state) {
-    backupBtn.innerText = 'Start Backup';
+  let state = backupState;
+  if (!state) {
+    backupBtn.innerText = "Start Backup";
     backupLight.classList.toggle("green-light");
   }
 }
@@ -271,7 +271,7 @@ backupBtn.addEventListener("click", () => {
     // ! Debug
     // ? DELETE
     // console.log(state)
-    showBackupState();
+    // showBackupState();
     backupInstancePlus();
     let passedState = getBackupParams();
 
@@ -288,7 +288,7 @@ backupBtn.addEventListener("click", () => {
       }
       backupMessage.innerText = `Provide folders to backup`;
       backupStateFalse();
-      showBackupState();
+      // showBackupState();
       return;
     }
     // Prevent trying to backup to the same filepath, change UI color, display error
@@ -304,7 +304,7 @@ backupBtn.addEventListener("click", () => {
       }
       backupMessage.innerText = `You cannot back a folder up into itself`;
       backupStateFalse();
-      showBackupState();
+      // showBackupState();
       return;
     }
     // Prevent negative backup frequency or number of backups, change UI color, display error
@@ -322,7 +322,7 @@ backupBtn.addEventListener("click", () => {
       backupTime.value = 10;
       backupNumber.value = 2;
       backupStateFalse();
-      showBackupState();
+      // showBackupState();
       return;
     }
     // If UI color was error mode, change it back to normal
@@ -335,14 +335,14 @@ backupBtn.addEventListener("click", () => {
 
     // Start Backup
     testFunc(passedState);
-    backupUIOn()
+    backupUIOn();
   } else if (backupState === true) {
     backupStateFalse();
     // ! Debug
     // ? DELETE
     // console.log(state)
-    showBackupState();
-    backupUIOff()
+    // showBackupState();
+    backupUIOff();
   }
 });
 

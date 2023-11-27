@@ -1,65 +1,64 @@
 :root {
-    --bg-color: #3b3d41;
-    --main-color: #e2b714;
-    --caret-color: #e2b714;
-    --sub-color: #646669;
-    --sub-alt-color: #2c2e31;
-    --text-color: #d1d0c5;
-    --error-color: #ca4754;
-    --error-extra-color: #7e2a33;
-    --colorful-error-color: #ca4754;
-    --colorful-error-extra-color: #7e2a33;
+  --bg-color: #3b3d41;
+  --main-color: #e2b714;
+  --caret-color: #e2b714;
+  --sub-color: #646669;
+  --sub-alt-color: #2c2e31;
+  --text-color: #d1d0c5;
+  --error-color: #ca4754;
+  --error-extra-color: #7e2a33;
+  --colorful-error-color: #ca4754;
+  --colorful-error-extra-color: #7e2a33;
 }
 
-
 body {
-    background: var(--sub-alt-color);
-    color: var(--text-color);
-    font-family: sans-serif;
-    padding: 0.25em;
+  background: var(--sub-alt-color);
+  color: var(--text-color);
+  font-family: sans-serif;
+  padding: 0.25em;
 }
 
 .header-title {
-/* padding: 0.25em 0.1em; */
-margin: 0.1em 0 0.25em 0;
+  /* padding: 0.25em 0.1em; */
+  margin: 0.1em 0 0.25em 0;
 }
 
 .section {
-    /* border: var(--sub-color) solid 0.2em; */
-    border-radius: 1em;
-    padding: 1em;
-    margin-bottom: 0.5em;
-    background: var(--bg-color);
+  /* border: var(--sub-color) solid 0.2em; */
+  border-radius: 1em;
+  padding: 1em;
+  margin-bottom: 0.5em;
+  background: var(--bg-color);
 }
 
 .errorsection {
-    background: var(--error-extra-color);
+  background: var(--error-extra-color);
 }
 
 .section-title {
-    margin: 0 0;
+  margin: 0 0;
 }
 
 .button {
-    padding: 0.5em;
-    background: var(--sub-alt-color);
-    color: var(--text-color);
-    border-radius: 0.25em;
-    border: transparent;
-    font-size: 1em;
-    font-weight: 600;
+  padding: 0.5em;
+  background: var(--sub-alt-color);
+  color: var(--text-color);
+  border-radius: 0.25em;
+  border: transparent;
+  font-size: 1em;
+  font-weight: 600;
 }
 
 .backup-light {
-    background: rgb(238, 4, 4);
-    border-radius: 10px;
-    border: solid black 1.5px;
-    min-width: 20px;
-    max-width: 20px;
-    min-height: 20px;
-    max-height: 20px;
+  background: rgb(238, 4, 4);
+  border-radius: 10px;
+  border: solid black 1.5px;
+  min-width: 20px;
+  max-width: 20px;
+  min-height: 20px;
+  max-height: 20px;
 }
 
 .green-light {
-    background: rgb(7, 201, 7);
+  background: rgb(7, 201, 7);
 }
