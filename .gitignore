@@ -2,6 +2,8 @@
 donator
 receptacle
 todo.txt
+profiles/*
+!profiles/defaultProfile.json
 
 # Logs
 logs
