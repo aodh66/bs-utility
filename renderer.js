@@ -18,6 +18,7 @@ const savePathElement = document.getElementById("folderSavePath");
 const backupTime = document.getElementById("backup-time");
 const backupNumber = document.getElementById("backup-number");
 const backupBtn = document.getElementById("backup-btn");
+const backupLight = document.getElementById("backupLight");
 const backupStatusLight = document.getElementById("backup-status-light");
 const backupMessage = document.getElementById("backupMessage");
 // Snapshot Elements
@@ -141,6 +142,24 @@ showBackupState();
 // Function to increment backupInstance
 function backupInstancePlus() {
   backupInstance = backupInstance + 1;
+}
+
+// Function to toggle backup UI to on state (Green light, stop backup text)
+function backupUIOn() {
+  let state = backupState
+  if(state) {
+    backupLight.classList.toggle("green-light");
+    backupBtn.innerText = 'Stop Backup';
+  }
+}
+
+// Function to toggle backup UI to off state (Green light, stop backup text)
+function backupUIOff() {
+  let state = backupState
+  if(!state) {
+    backupBtn.innerText = 'Start Backup';
+    backupLight.classList.toggle("green-light");
+  }
 }
 
 // * Function to pull current Backup Params
@@ -316,12 +335,14 @@ backupBtn.addEventListener("click", () => {
 
     // Start Backup
     testFunc(passedState);
+    backupUIOn()
   } else if (backupState === true) {
     backupStateFalse();
     // ! Debug
     // ? DELETE
     // console.log(state)
     showBackupState();
+    backupUIOff()
   }
 });
 
@@ -397,6 +418,9 @@ snapshotBtn.addEventListener("click", async () => {
   }
 });
 
+// * ------------------------------
+// * Snapshot Hotkey
+// * ------------------------------
 // * Response from hotkey saying that save is successful
 // ! Main to Renderer message method
 // Collect response from main on whether the snapshot has been saved
@@ -432,7 +456,7 @@ async function handler(event) {
   }
 }
 
-// Giving the main.js hotkey function call the current snapshot params
+// * Giving the main.js hotkey function call the current snapshot params
 window.myAPI.sendSnapshotParams((event, value) => {
   const snapshotParams = giveSnapshotParams();
 

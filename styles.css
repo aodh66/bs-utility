@@ -51,5 +51,15 @@ margin: 0.1em 0 0.25em 0;
 }
 
 .backup-light {
-    
+    background: rgb(238, 4, 4);
+    border-radius: 10px;
+    border: solid black 1.5px;
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+}
+
+.green-light {
+    background: rgb(7, 201, 7);
 }
