@@ -164,20 +164,20 @@ const createWindow = () => {
     const backupPath = value.folderPath;
     const savePath = value.savePath + "\\" + value.snapshotName;
 
-        // If no filepaths are provided, ask for them, change UI color, display error
-        if (!value.folderPath || !value.savePath) {
-          // ! Debug
-          // ? DELETE
-          // console.log('Provide filepaths')
-          return;
-        }
-        // Prevent trying to backup to the same filepath, change UI color, display error
-        if (value.folderPath == value.savePath) {
-          // ! Debug
-          // ? DELETE
-          // console.log('You cannot back a folder up into itself')
-          return;
-        }
+    // If no filepaths are provided, ask for them, change UI color, display error
+    if (!value.folderPath || !value.savePath) {
+      // ! Debug
+      // ? DELETE
+      // console.log('Provide filepaths')
+      return;
+    }
+    // Prevent trying to backup to the same filepath, change UI color, display error
+    if (value.folderPath == value.savePath) {
+      // ! Debug
+      // ? DELETE
+      // console.log('You cannot back a folder up into itself')
+      return;
+    }
 
     // ! Tester with no save call
     // ! ======================================================================================
@@ -185,7 +185,7 @@ const createWindow = () => {
     // ! ======================================================================================
     // return value;
     win.webContents.send("mainResponse", true);
-    return
+    return;
     // Filesystem method and function to copy files from backupPath to savePath recursively
     // Returns nothing directly, calls the Main to Renderer message function mainResponse
     // to return true
@@ -203,84 +203,104 @@ const createWindow = () => {
     });
     // ! ======================================================================================
   });
-  
 
-
-
-  // ! ======================================================================================
-  // ! Under Construction
-  // ! ======================================================================================
-  // TODO Config file saving and loading
+  // * Config file saving and loading
   // * Function that saves a profile onclick
   // * Runs when save profile button is clicked
   // * Returns a boolean
-  ipcMain.handle('saveProfile', async (event, sentProfileData) => {
-    console.log('sent profile data', sentProfileData)
+  ipcMain.handle("saveProfile", async (event, sentProfileData) => {
+    // ! Debug
+    // ? DELETE
+    // console.log("sent profile data", sentProfileData);
+    // Saves profile
     let profileSaveData = JSON.stringify(sentProfileData);
-    fs.writeFileSync(`profiles\\${sentProfileData.profileName}.json`, profileSaveData);
-    let profileStateData = JSON.stringify(sentProfileData.profileName);
-    fs.writeFileSync('config.json', profileStateData);
-    return true;
-  });
-  
-  // * Function that loads a profile onclick
-  // * Runs when load profile button is clicked
-  // * Returns profile data from json
-  ipcMain.handle('loadProfile', async (event, sentProfileRequest) => {
-    console.log('sent profile request', sentProfileRequest)
-    let rawProfileData = fs.readFileSync(`profiles\\${sentProfileRequest}.json`);
-    let profileDataToLoad = JSON.parse(rawProfileData);
-    console.log('profile data json to send', profileDataToLoad);
-    let profileStateData = JSON.stringify(sentProfileRequest);
-    fs.writeFileSync('config.json', profileStateData);
-  return profileDataToLoad
-});
-
-
-
-
-  // TODO PLACE THESE FUNCTIONS WHERE THEY NEED TO BE 
-  // Filesystem method and function to write the last profile used
-  let placeholderData = {
-    profileName: 'PlaceholderFile'
-  }
-  let profileStateData = JSON.stringify(placeholderData);
-  fs.writeFileSync('config.json', profileStateData);
-  
-  // Filesystem method and function to read the last profile used
-  let rawProfileStateData = fs.readFileSync('config.json');
-  let profileToLoad = JSON.parse(rawProfileStateData);
-  console.log('profile state json', profileToLoad);
-  
-  // Filesystem method and function to save profile data
-  let placeholderProfileData = {
-    profileName: 'PlaceholderProfile',
-    profileData: 'lotsofdata',
-  }
-  let profileSaveData = JSON.stringify(placeholderProfileData);
-  fs.writeFileSync(`profiles\\${placeholderProfileData.profileName}.json`, profileSaveData);
-  
-  // Filesystem method and function to read profile data
-  let profileToRead = 'PlaceholderProfile'
-  let rawProfileData = fs.readFileSync(`profiles\\${profileToRead}.json`);
-  let profileDataToLoad = JSON.parse(rawProfileData);
-  console.log('profile data json', profileDataToLoad);
-  
-
-
-
-
-
-
-
-  
-  
-  
+    fs.writeFileSync(
+      `profiles\\${sentProfileData.profileName}.json`,
+      profileSaveData
+      );
+      // Changes config, so saved profile is the last used
+      let profileStateData = JSON.stringify(sentProfileData.profileName);
+      fs.writeFileSync("config.json", profileStateData);
+      // Returns that it saved the profile
+      return true;
+    });
+    
+    // * Function that loads a profile onclick
+    // * Runs when load profile button is clicked
+    // * Returns profile data from json
+    ipcMain.handle("loadProfile", async (event, sentProfileRequest) => {
+      // ! Debug
+      // ? DELETE
+      // console.log("sent profile request", sentProfileRequest);
+      // Loads profile data
+      let rawProfileData = fs.readFileSync(
+        `profiles\\${sentProfileRequest}.json`
+        );
+        let profileDataToLoad = JSON.parse(rawProfileData);
+        // ! Debug
+        // ? DELETE
+        // console.log("profile data json to send", profileDataToLoad);
+        // Changes config, so loaded profile is the last used
+        let profileStateData = JSON.stringify(sentProfileRequest);
+        fs.writeFileSync("config.json", profileStateData);
+        // Returns the profile data
+        return profileDataToLoad;
+      });
+      
+      // * Function that loads the last profile used
+      // * Runs on app start
+      // * Returns profile data from json
+      ipcMain.handle("loadInitialProfile", async (event) => {
+        // Reads config to see what last used profile was
+        let rawProfileStateData = fs.readFileSync("config.json");
+        let profileToLoad = JSON.parse(rawProfileStateData);
+        // ! Debug
+        // ? DELETE
+        // console.log("profile to load", profileToLoad);
+        // Loads last used profile data
+        let rawProfileData = fs.readFileSync(`profiles\\${profileToLoad}.json`);
+        let profileDataToLoad = JSON.parse(rawProfileData);
+        //   // ! Debug
+        //   // ? DELETE
+        //   // console.log("profile data json to send", profileDataToLoad);
+        //   // Changes config, so loaded profile is the last used
+        //   let profileStateData = JSON.stringify(profileToLoad);
+        // fs.writeFileSync("config.json", profileStateData);
+        
+        // Returns the profile data
+        return profileDataToLoad;
+      });
+      
+      // ! ======================================================================================
+      // ! PENDING DELETE
+      // ! ======================================================================================
+      // TODO PLACE THESE FUNCTIONS WHERE THEY NEED TO BE
+      // // Filesystem method and function to write the last profile used
+      // let placeholderData = {
+        //   profileName: 'PlaceholderFile'
+        // }
+        // let profileStateData = JSON.stringify(placeholderData);
+        // fs.writeFileSync('config.json', profileStateData);
+        
+        // // Filesystem method and function to read the last profile used
+        // let rawProfileStateData = fs.readFileSync('config.json');
+        // let profileToLoad = JSON.parse(rawProfileStateData);
+        // console.log('profile state json', profileToLoad);
+        
+        // // Filesystem method and function to save profile data
+        // let placeholderProfileData = {
+          //   profileName: 'PlaceholderProfile',
+          //   profileData: 'lotsofdata',
+          // }
+          // let profileSaveData = JSON.stringify(placeholderProfileData);
+          // fs.writeFileSync(`profiles\\${placeholderProfileData.profileName}.json`, profileSaveData);
+          
+          // // Filesystem method and function to read profile data
+          // let profileToRead = 'PlaceholderProfile'
+          // let rawProfileData = fs.readFileSync(`profiles\\${profileToRead}.json`);
+          // let profileDataToLoad = JSON.parse(rawProfileData);
+          // console.log('profile data json', profileDataToLoad);
   // ! ======================================================================================
-
-
-
-
 
 
   // * =================================

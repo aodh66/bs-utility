@@ -32,22 +32,72 @@ const snapshotHotkeyMessageElement = document.getElementById(
 );
 const snapshotBtn = document.getElementById("snapshotBtn");
 const snapshotName = document.getElementById("snapshot-name-box");
+// Profile Elements
+const profileSection = document.getElementById("profileSection");
+const profileNameElement = document.getElementById("profile-name-box");
+const profileSaveBtn = document.getElementById("saveProfileBtn");
+const profileLoadBtn = document.getElementById("loadProfileBtn");
+const profileMessageElement = document.getElementById("profileMessage");
+profileNameElement.value = "defaultProfile";
+let placeholderProfile = "defaultProfile";
+profileMessageElement.innerText = `Profile ${placeholderProfile} Loaded`;
+
+// * Function to get all user data
+function getProfileData() {
+  return {
+    profileName: profileNameElement.value,
+    backupFolderPath: folderPathElement.innerText,
+    backupSavePath: savePathElement.innerText,
+    backupFrequency: backupTime.value,
+    backupNumber: backupNumber.value,
+    snapshotSavePath: snapshotPathElement.innerText,
+    snapshotHotkey: snapshotHotkeyElement.value,
+    snapshotName: snapshotName.value,
+  };
+}
+
+// * Function to set all user data
+function setProfileData(loadedProfile) {
+  profileNameElement.value = loadedProfile.profileName;
+  folderPathElement.innerText = loadedProfile.backupFolderPath;
+  savePathElement.innerText = loadedProfile.backupSavePath;
+  backupTime.value = loadedProfile.backupFrequency;
+  backupNumber.value = loadedProfile.backupNumber;
+  snapshotPathElement.innerText = loadedProfile.snapshotSavePath;
+  snapshotHotkeyElement.value = loadedProfile.snapshotHotkey;
+  snapshotName.value = loadedProfile.snapshotName;
+}
 
 // * ==============================
 // * Loading Last Profile
 // * ==============================
-// Populate Backup UI values
-// TODO folderPathElement.innerText = `${ConfigValue}`
-// TODO savePathElement.innerText = `${ConfigValue}`
-backupTime.value = 10;
-backupNumber.value = 2;
-// TODO backupTime.value = `${ConfigValue}`
-// TODO backupNumber.value = `${ConfigValue}`
-// Populate Snapshot UI values
-snapshotHotkeyElement.value = `Ctrl+0`;
-snapshotName.value = "Snapshot";
-// TODO snapshotHotkeyBtn.value = `${ConfigValue}`
-// TODO snapshotPathElement.innerText = `${ConfigValue}`
+// * Function to request the last used profile data on app start, load it, and populate the UI
+// * Populate Default Profile UI
+setProfileData({
+  profileName: "defaultProfile",
+  backupFolderPath: "",
+  backupSavePath: "",
+  backupFrequency: 10,
+  backupNumber: 2,
+  snapshotSavePath: "",
+  snapshotHotkey: "Ctrl+0",
+  snapshotName: "Snapshot",
+});
+
+// * Last Profile Load
+async function loadInitialProfile() {
+  // call profile load function in main and await a positive response
+  const status = await window.myAPI.loadInitialProfile();
+
+  // on positive response, display message to the user on load status
+  if (status) {
+    setProfileData(status);
+    profileMessageElement.innerText = `${status.profileName} Profile Loaded`;
+  } else {
+    profileMessageElement.innerText = `Error Loading Profile`;
+  }
+}
+loadInitialProfile();
 
 // * ==============================
 // * Backup Section
@@ -274,7 +324,6 @@ backupBtn.addEventListener("click", () => {
 // * Snapshot Section
 // * ==============================
 // * Function to pull current snapshot params from index.html values
-// TODO will need a default one that would pull from the config file
 function giveSnapshotParams() {
   return {
     type: "snapshot",
@@ -423,46 +472,7 @@ window.myAPI.sendSnapshotParams((event, value) => {
 // * ==============================
 // * Profile Section
 // * ==============================
-// TODO
-// Maybe just open the full dialogue to save a file for profiles and then load the same file with the full window dialogue
-// Profile Elements
-const profileSection = document.getElementById("profileSection");
-const profileNameElement = document.getElementById("profile-name-box");
-const profileSaveBtn = document.getElementById("saveProfileBtn");
-const profileLoadBtn = document.getElementById("loadProfileBtn");
-const profileMessageElement = document.getElementById("profileMessage");
-profileNameElement.value = "placeholderProfile";
-let placeholderProfile = "placeholderProfile";
-profileMessageElement.innerText = `Profile ${placeholderProfile} Loaded`;
-
-function getProfileData() {
-  return {
-    profileName: profileNameElement.value,
-    backupFolderPath: folderPathElement.innerText,
-    backupSavePath: savePathElement.innerText,
-    backupFrequency: backupTime.value,
-    backupNumber: backupNumber.value,
-    snapshotSavePath: snapshotPathElement.innerText,
-    snapshotHotkey: snapshotHotkeyElement.value,
-    snapshotName: snapshotName.value,
-  };
-}
-
-function setProfileData(loadedProfile) {
-  profileNameElement.value = loadedProfile.profileName;
-  folderPathElement.innerText = loadedProfile.backupFolderPath;
-  savePathElement.innerText = loadedProfile.backupSavePath;
-  backupTime.value = loadedProfile.backupFrequency;
-  backupNumber.value = loadedProfile.backupNumber;
-  snapshotPathElement.innerText = loadedProfile.snapshotSavePath;
-  snapshotHotkeyElement.value = loadedProfile.snapshotHotkey;
-  snapshotName.value = loadedProfile.snapshotName;
-}
-
-// ! Debug
-// ? DELETE
-// console.log(getProfileData())
-
+//? Maybe just open the full dialogue to save a file for profiles and then load the same file with the full window dialogue
 // * Profile Save Onclick
 profileSaveBtn.addEventListener("click", async () => {
   let profileData = getProfileData();
@@ -534,12 +544,12 @@ profileLoadBtn.addEventListener("click", async () => {
   }
 
   //! Simple response method
-  // call profile save function in main and await a positive response
+  // call profile load function in main and await a positive response
   const status = await window.myAPI.loadProfile(profileRequest);
 
-  // on positive response, display message to the user on save status
+  // on positive response, display message to the user on load status
   if (status) {
-    setProfileData(status)
+    setProfileData(status);
     profileMessageElement.innerText = `${profileRequest} Profile Loaded`;
   } else {
     profileMessageElement.innerText = `Error Loading Profile`;
