@@ -436,9 +436,7 @@ window.myAPI.mainResponse((_event, value) => {
   }
 });
 
-// TODO immediately call the function to set the hotkey (will be used for config load later)
-// TODO create an onclick to call it again if you press the save hotkey button
-// * Function that saves a hotkey and snapshot name onclick
+// * Function that saves a hotkey onclick
 // add event listeners
 snapshotHotkeyBtn.addEventListener("load", handler);
 snapshotHotkeyBtn.addEventListener("click", handler);
@@ -454,6 +452,8 @@ async function handler(event) {
     snapshotHotkeyMessageElement.innerText = `Error Registering Hotkey`;
   }
 }
+// Call the hotkey save function on window load, so hotkey is active immediately
+handler();
 
 // * Giving the main.js hotkey function call the current snapshot params
 window.myAPI.sendSnapshotParams((event, value) => {
