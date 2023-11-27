@@ -445,7 +445,6 @@ snapshotHotkeyBtn.addEventListener("click", handler);
 // add handler function
 async function handler(event) {
   // get current paths and filenames in param object
-  const snapshotParams = giveSnapshotParams();
   const status = await window.myAPI.saveSnapshotHotkey(
     snapshotHotkeyElement.value
   );
