@@ -14,6 +14,7 @@
   <!-- * Title -->
   <header>
     <h1 class="header-title">Backup & Save Utility</h1>
+    <button type="button" class="button exit-button" id="exit-btn">Exit</button>
   </header>
 
 
@@ -25,7 +26,7 @@
         <!-- Donor Folder -->
         <p>Folder to Backup: <strong id="folderPath"></strong></p>
         <button type="button" id="backup-folder-path-btn" class="button">Choose folder to backup</button>
-  
+
         <!-- Receptacle Folder -->
         <p>Backup Location: <strong id="folderSavePath"></strong></p>
         <button type="button" id="backup-folder-save-path-btn" class="button">Choose a location to save backups</button>
@@ -36,23 +37,23 @@
         <p>Backup Frequency (mins):
           <input id="backup-time" type="number" placeholder="10" class="input">
         </p>
-  
+
         <!-- Number of Backups -->
         <p>Number of Backups:
           <input id="backup-number" type="number" placeholder="2" class="input">
         </p>
-  
-<div class="backup-bottom">
+
+        <div class="backup-bottom">
           <!-- Backup Button -->
           <button type="button" class="button" id="backup-btn">Start Backup</button>
-    
+
           <!-- Backup Status -->
           <div class="backup-status">
             <p>Backup Status:<strong id="backup-status-light"></strong></p>
             <div class="backup-light" id="backupLight"></div>
           </div>
         </div>
-</div>
+      </div>
 
       <!-- Backup Notifications -->
       <div class="backup-notifications">
@@ -65,14 +66,15 @@
     <div class="snapshot-section section" id="snapshotSection">
       <div class="snapshot-upper">
         <h2 class="snapshot-title section-title">Snapshot</h2>
-  
+
         <!-- Snapshot Receptacle Folder -->
         <p>Snapshot Backup Location: <strong id="snapshotSavePath"></strong></p>
         <button type="button" id="snapshot-save-path-btn" class="button">Choose a location to save snapshots</button>
-  
+
         <!-- Hotkey -->
         <div class="hotkey">
-          <p><a href="https://www.electronjs.org/docs/latest/api/accelerator" target="_blank" class="hotkey-link">Hotkey</a> to snapshot:
+          <p><a href="https://www.electronjs.org/docs/latest/api/accelerator" target="_blank"
+              class="hotkey-link">Hotkey</a> to snapshot:
             <input id="snapshot-hotkey-box" type="text" placeholder="Ctrl+0" class="input">
           </p>
           <button class="button" id="snapshotHotkeyBtn">Register Hotkey</button>
@@ -84,7 +86,7 @@
         <p>Snapshot name:
           <input id="snapshot-name-box" type="text" placeholder="Snapshot Name" class="input">
         </p>
-  
+
         <!-- Snapshot Button -->
         <button class="button" id="snapshotBtn">Snapshot</button>
       </div>
@@ -104,20 +106,20 @@
         <p>Profile name:
           <input id="profile-name-box" type="text" placeholder="ProfileName" class="input">
         </p>
-<div class="profile-buttons">
+        <div class="profile-buttons">
           <!-- Save profile -->
           <button class="button" id="saveProfileBtn">Save profile</button>
-    
+
           <!-- Load profile -->
           <button class="button" id="loadProfileBtn">Load profile</button>
-</div>
+        </div>
       </div>
 
-<div class="profile-notifications">
+      <div class="profile-notifications">
         <!-- Profile Notifications -->
         <p>Notifications:</p>
         <p><strong id="profileMessage"></strong></p>
-</div>
+      </div>
     </div>
   </main>
 </body>

@@ -16,23 +16,30 @@
   --colorful-error-extra-color: #7e2a33;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  -webkit-app-region: drag;
+  background-color: var(--dark-color);
+  padding: 0.5em;
+  z-index: -1;
+  box-shadow: 0px 0px 30px 30px var(--dark-color);
+}
+
+.header-title {
+  margin: 0.1em 0 0.25em 0;
+}
+
 body {
   background: var(--sub-alt-color);
   color: var(--text-color);
   font-family: sans-serif;
-  padding: 0.25em;
-}
-
-.header-title {
-  /* padding: 0.25em 0.1em; */
-  margin: 0.1em 0 0.25em 0;
 }
 
 .section {
-  /* border: var(--sub-color) solid 0.2em; */
-  border-radius: 1em;
+  border-radius: 0.5em;
   padding: 0.5em 0.75em;
-  margin-bottom: 0.5em;
+  margin: 0 0.5em 0.5em 0.5em;
   background: var(--bg-color);
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.534);
 }
@@ -57,10 +64,16 @@ body {
   max-height: 3em;
 }
 
+.exit-button {
+  background-color: var(--colorful-error-extra-color);
+  padding: 0.25em 0.5em;
+  max-height: 2em;
+  -webkit-app-region: no-drag;
+}
+
 .backup-light {
   background: var(--red-light);
   border-radius: 10px;
-  /* border: solid black 1.5px; */
   box-shadow: 0 0 5px 5px var(--red-light);
   min-width: 20px;
   max-width: 20px;
@@ -83,27 +96,23 @@ body {
 }
 
 .input:focus {
-  outline: none ;
+  outline: none;
   border-bottom: 2px solid var(--highlight);
 }
 
 .hotkey-link {
   color: var(--highlight);
-  /* color: var(--link-color); */
 }
 
 .backup-section {
   display: grid;
-/* grid-template-columns: 3fr 2fr; */
-grid-template-columns: auto auto;
-grid-template-rows: auto auto;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
 }
 
 .backup-bottom {
   display: flex;
-  /* flex-direction: column; */
   gap: 3em;
-  
 }
 
 .backup-status {
@@ -129,9 +138,8 @@ grid-template-rows: auto auto;
 
 .snapshot-section {
   display: grid;
-/* grid-template-columns: 3fr 2fr; */
-grid-template-columns: auto auto;
-grid-template-rows: auto auto;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
 }
 
 .snapshot-upper {

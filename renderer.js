@@ -1,9 +1,11 @@
 // * ==============================
 // * HTML Elements
 // * ==============================
+// *Exit Button
+const exitBtn = document.getElementById("exit-btn");
 // *Backup
-// Backup Folder Elements
 const backupSection = document.getElementById("backupSection");
+// Backup Folder Elements
 const folderBtn = document.getElementById("backup-folder-path-btn");
 const folderPathElement = document.getElementById("folderPath");
 // Save Location Elements
@@ -13,23 +15,32 @@ const savePathElement = document.getElementById("folderSavePath");
 const backupTime = document.getElementById("backup-time");
 const backupNumber = document.getElementById("backup-number");
 const backupBtn = document.getElementById("backup-btn");
+// Status and Message Elements
 const backupLight = document.getElementById("backupLight");
-const backupStatusLight = document.getElementById("backup-status-light");
+// ? DELETE
+// const backupStatusLight = document.getElementById("backup-status-light");
 const backupMessage = document.getElementById("backupMessage");
-// Snapshot Elements
+// * Snapshot
 const snapshotSection = document.getElementById("snapshotSection");
+// Snapshot Location Elements
 const snapshotPathBtn = document.getElementById("snapshot-save-path-btn");
 const snapshotPathElement = document.getElementById("snapshotSavePath");
-const snapshotMessageElement = document.getElementById("snapshotMessage");
+// Hotkey Elements
 const snapshotHotkeyElement = document.getElementById("snapshot-hotkey-box");
 const snapshotHotkeyBtn = document.getElementById("snapshotHotkeyBtn");
+// Snapshot Button and Param Elements
 const snapshotBtn = document.getElementById("snapshotBtn");
 const snapshotName = document.getElementById("snapshot-name-box");
-// Profile Elements
+// Message Elements
+const snapshotMessageElement = document.getElementById("snapshotMessage");
+// * Profile
 const profileSection = document.getElementById("profileSection");
+// Profile Param Element
 const profileNameElement = document.getElementById("profile-name-box");
+// Profile Button Elements
 const profileSaveBtn = document.getElementById("saveProfileBtn");
 const profileLoadBtn = document.getElementById("loadProfileBtn");
+// Message Elements
 const profileMessageElement = document.getElementById("profileMessage");
 profileNameElement.value = "defaultProfile";
 let placeholderProfile = "defaultProfile";
@@ -60,6 +71,15 @@ function setProfileData(loadedProfile) {
   snapshotHotkeyElement.value = loadedProfile.snapshotHotkey;
   snapshotName.value = loadedProfile.snapshotName;
 }
+
+// * ==============================
+// * Exit Button Functionality
+// * ==============================
+// * Function to exit the app onclick
+// * Called when exit button is pressed
+exitBtn.addEventListener("click", () => {
+  window.myAPI.exitCall();
+});
 
 // * ==============================
 // * Loading Last Profile
@@ -125,12 +145,6 @@ function backupStateFalse() {
   backupState = false;
 }
 
-// Function that prints the current backup state to the UI
-function showBackupState() {
-  backupStatusLight.innerText = `${backupState}`;
-}
-// showBackupState();
-
 // Function to increment backupInstance
 function backupInstancePlus() {
   backupInstance = backupInstance + 1;
@@ -167,14 +181,6 @@ function getBackupParams() {
   };
 }
 
-// ! Currently unused, resets currentNumb
-// ? DELETE
-// function resetBackNum() {
-//   if(currentNumb !== 1) {
-//     currentNumb = 1
-//   }
-// }
-
 // Function that checks the number of backups field, then cycles currentNumb from 1
 // up to the User value
 function changeBackNum() {
@@ -205,26 +211,14 @@ async function testFunc(inputState) {
     instance: backupInstance,
   };
 
-  // ! Debug
-  // ? DELETE
-  // console.log('Backup is running')
-  // console.log('paramState', paramState)
-  // console.log('inputState', inputState)
-
   // * Backup call to Main
   const status = await window.myAPI.backupSave(paramState);
   // On positive response, display message to the user on save status
   if (status) {
-    // ! Debug
-    // ? DELETE
-    // console.log('status', status)
     backupMessage.innerText = `Backup ${status.currentNumb} Saved`;
   }
   // Exit and don't call again if state is incorrect
   if (!backupState) {
-    // ! Debug
-    // ? DELETE
-    // console.log('negatory')
     return;
   }
 
@@ -232,9 +226,6 @@ async function testFunc(inputState) {
   // Stops it running forever in background if backup is disabled, params are changed
   // and backup is restarted in between calls
   if (inputState.instance != paramState.instance) {
-    // ! Debug
-    // ? DELETE
-    // console.log('negatory')
     return;
   }
 
@@ -243,35 +234,26 @@ async function testFunc(inputState) {
 
   // ! Debug - Calls every second
   // ? DELETE
+  // setTimeout(() => {
+  //   testFunc(inputState);
+  // }, 1000);
+  // Runs the function again after user chosen delay
   setTimeout(() => {
     testFunc(inputState);
-  }, 1000);
-  // Runs the function again after user chosen delay
-  // setTimeout(()=>{testFunc(inputState)}, inputState.frequency*60000);
+  }, inputState.frequency * 60000);
 }
 
 // * Rolling Backup Onclick toggle
 // Changes state + shows user, and starts backup when state is correct
 backupBtn.addEventListener("click", () => {
-  // ! Debug
-  // ? DELETE
-  // console.log('toggle state')
-
   // If state is false, make it true, change UI, get data, try to start backup
   if (backupState === false) {
     backupStateTrue();
-    // ! Debug
-    // ? DELETE
-    // console.log(state)
-    // showBackupState();
     backupInstancePlus();
     let passedState = getBackupParams();
 
     // If no filepaths are provided, ask for them, change UI color, display error
     if (!passedState.folderPath || !passedState.savePath) {
-      // ! Debug
-      // ? DELETE
-      // console.log('Provide filepaths')
       if (
         backupSection.classList[backupSection.classList.length - 1] !=
         "errorsection"
@@ -280,14 +262,10 @@ backupBtn.addEventListener("click", () => {
       }
       backupMessage.innerText = `Provide folders to backup`;
       backupStateFalse();
-      // showBackupState();
       return;
     }
     // Prevent trying to backup to the same filepath, change UI color, display error
     if (passedState.folderPath == passedState.savePath) {
-      // ! Debug
-      // ? DELETE
-      // console.log('You cannot back a folder up into itself')
       if (
         backupSection.classList[backupSection.classList.length - 1] !=
         "errorsection"
@@ -296,14 +274,10 @@ backupBtn.addEventListener("click", () => {
       }
       backupMessage.innerText = `You cannot back a folder up into itself`;
       backupStateFalse();
-      // showBackupState();
       return;
     }
     // Prevent negative backup frequency or number of backups, change UI color, display error
     if (passedState.frequency < 0.01 || backupNumber.value < 1) {
-      // ! Debug
-      // ? DELETE
-      // console.log('You cannot have <=0 backup frequency, or less than 1 backup')
       if (
         backupSection.classList[backupSection.classList.length - 1] !=
         "errorsection"
@@ -314,7 +288,6 @@ backupBtn.addEventListener("click", () => {
       backupTime.value = 10;
       backupNumber.value = 2;
       backupStateFalse();
-      // showBackupState();
       return;
     }
     // If UI color was error mode, change it back to normal
@@ -330,10 +303,6 @@ backupBtn.addEventListener("click", () => {
     backupUIOn();
   } else if (backupState === true) {
     backupStateFalse();
-    // ! Debug
-    // ? DELETE
-    // console.log(state)
-    // showBackupState();
     backupUIOff();
   }
 });
@@ -364,9 +333,6 @@ snapshotBtn.addEventListener("click", async () => {
 
   // If no filepaths are provided, ask for them, change UI color, display error
   if (!snapshotParams.folderPath || !snapshotParams.savePath) {
-    // ! Debug
-    // ? DELETE
-    // console.log('Provide filepaths')
     if (
       snapshotSection.classList[snapshotSection.classList.length - 1] !=
       "errorsection"
@@ -378,9 +344,6 @@ snapshotBtn.addEventListener("click", async () => {
   }
   // Prevent trying to backup to the same filepath, change UI color, display error
   if (snapshotParams.folderPath == snapshotParams.savePath) {
-    // ! Debug
-    // ? DELETE
-    // console.log('You cannot back a folder up into itself')
     if (
       snapshotSection.classList[snapshotSection.classList.length - 1] !=
       "errorsection"
@@ -398,7 +361,6 @@ snapshotBtn.addEventListener("click", async () => {
     snapshotSection.classList.toggle("errorsection");
   }
 
-  //! Simple response method
   // call snapshot function in main and await a positive response
   const status = await window.myAPI.saveSnapshot(snapshotParams);
 
@@ -414,13 +376,10 @@ snapshotBtn.addEventListener("click", async () => {
 // * Snapshot Hotkey
 // * ------------------------------
 // * Response from hotkey saying that save is successful
-// ! Main to Renderer message method
+//  Main to Renderer message method
 // Collect response from main on whether the snapshot has been saved
 // Display that status to the user
 window.myAPI.mainResponse((_event, value) => {
-  // ! Debug
-  // ? DELETE
-  // console.log(`windowapimessageresponse ${value}`)
   if (value === true) {
     snapshotMessageElement.innerText = `${snapshotName.value} Snapshot Saved`;
   } else {
@@ -453,9 +412,6 @@ window.myAPI.sendSnapshotParams((event, value) => {
 
   // If no filepaths are provided, ask for them, change UI color, display error
   if (!snapshotParams.folderPath || !snapshotParams.savePath) {
-    // ! Debug
-    // ? DELETE
-    // console.log('Provide filepaths')
     if (
       snapshotSection.classList[snapshotSection.classList.length - 1] !=
       "errorsection"
@@ -467,9 +423,6 @@ window.myAPI.sendSnapshotParams((event, value) => {
   }
   // Prevent trying to backup to the same filepath, change UI color, display error
   if (snapshotParams.folderPath == snapshotParams.savePath) {
-    // ! Debug
-    // ? DELETE
-    // console.log('You cannot back a folder up into itself')
     if (
       snapshotSection.classList[snapshotSection.classList.length - 1] !=
       "errorsection"
@@ -497,15 +450,8 @@ window.myAPI.sendSnapshotParams((event, value) => {
 // * Profile Save Onclick
 profileSaveBtn.addEventListener("click", async () => {
   let profileData = getProfileData();
-  // ! Debug
-  // ? DELETE
-  // console.log(profileData)
-
   // Prevent having no profile name, change UI color, display error
   if (!profileData.profileName) {
-    // ! Debug
-    // ? DELETE
-    // console.log('You must have a profile name')
     if (
       profileSection.classList[profileSection.classList.length - 1] !=
       "errorsection"
@@ -523,7 +469,6 @@ profileSaveBtn.addEventListener("click", async () => {
     profileSection.classList.toggle("errorsection");
   }
 
-  //! Simple response method
   // call profile save function in main and await a positive response
   const status = await window.myAPI.saveProfile(profileData);
 
@@ -537,16 +482,10 @@ profileSaveBtn.addEventListener("click", async () => {
 
 // * Profile Load Onclick
 profileLoadBtn.addEventListener("click", async () => {
-  // ! Debug
-  // ? DELETE
   const profileRequest = getProfileData().profileName;
-  // console.log(profileRequest)
 
   // Prevent having no profile name, change UI color, display error
   if (!profileRequest) {
-    // ! Debug
-    // ? DELETE
-    // console.log('You must enter a profile name to load one')
     if (
       profileSection.classList[profileSection.classList.length - 1] !=
       "errorsection"
@@ -564,7 +503,6 @@ profileLoadBtn.addEventListener("click", async () => {
     profileSection.classList.toggle("errorsection");
   }
 
-  //! Simple response method
   // call profile load function in main and await a positive response
   const status = await window.myAPI.loadProfile(profileRequest);
 

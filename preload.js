@@ -25,4 +25,6 @@ contextBridge.exposeInMainWorld("myAPI", {
   loadInitialProfile: () => ipcRenderer.invoke("loadInitialProfile"),
   // Currently Unused Sends a value from Main to Renderer through the mainResponse channel (intended instead of the boolean, but can be used for other things)
   mainResponse: (mainResponse) => ipcRenderer.on("mainResponse", mainResponse),
+  // Currently Unused Sends a value from Main to Renderer through the mainResponse channel (intended instead of the boolean, but can be used for other things)
+  exitCall: () => ipcRenderer.send("exitCall"),
 });
