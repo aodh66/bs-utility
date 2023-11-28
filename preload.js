@@ -3,12 +3,12 @@ const { contextBridge, ipcRenderer } = require("electron");
 
 // ! Placeholder
 // ? DELETE
-contextBridge.exposeInMainWorld("versions", {
-  node: () => process.versions.node,
-  chrome: () => process.versions.chrome,
-  electron: () => process.versions.electron,
-  // we can also expose variables, not just functions
-});
+// contextBridge.exposeInMainWorld("versions", {
+//   node: () => process.versions.node,
+//   chrome: () => process.versions.chrome,
+//   electron: () => process.versions.electron,
+//   // we can also expose variables, not just functions
+// });
 
 // TODO could pull ipcRenderer.on blocks into a single input and listen for different values for each use
 contextBridge.exposeInMainWorld("myAPI", {

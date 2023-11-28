@@ -4,7 +4,12 @@
   --caret-color: #e2b714;
   --sub-color: #646669;
   --sub-alt-color: #2c2e31;
+  --dark-color: rgb(34, 34, 34);
   --text-color: #d1d0c5;
+  --orange: rgb(255, 145, 0);
+  --highlight: rgb(9, 206, 206);
+  --green-light: rgb(7, 201, 7);
+  --red-light: rgb(238, 4, 4);
   --error-color: #ca4754;
   --error-extra-color: #7e2a33;
   --colorful-error-color: #ca4754;
@@ -26,9 +31,10 @@ body {
 .section {
   /* border: var(--sub-color) solid 0.2em; */
   border-radius: 1em;
-  padding: 1em;
+  padding: 0.5em 0.75em;
   margin-bottom: 0.5em;
   background: var(--bg-color);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.534);
 }
 
 .errorsection {
@@ -47,12 +53,15 @@ body {
   border: transparent;
   font-size: 1em;
   font-weight: 600;
+  box-shadow: 1px 1px 5px black;
+  max-height: 3em;
 }
 
 .backup-light {
-  background: rgb(238, 4, 4);
+  background: var(--red-light);
   border-radius: 10px;
-  border: solid black 1.5px;
+  /* border: solid black 1.5px; */
+  box-shadow: 0 0 5px 5px var(--red-light);
   min-width: 20px;
   max-width: 20px;
   min-height: 20px;
@@ -60,5 +69,98 @@ body {
 }
 
 .green-light {
-  background: rgb(7, 201, 7);
+  background: var(--green-light);
+  box-shadow: 0 0 5px 5px var(--green-light);
+}
+
+.input {
+  background: var(--sub-alt-color);
+  color: var(--text-color);
+  font-weight: 600;
+  border: var(--sub-alt-color) solid 2px;
+  padding: 1px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.534);
+}
+
+.input:focus {
+  outline: none ;
+  border-bottom: 2px solid var(--highlight);
+}
+
+.hotkey-link {
+  color: var(--highlight);
+  /* color: var(--link-color); */
+}
+
+.backup-section {
+  display: grid;
+/* grid-template-columns: 3fr 2fr; */
+grid-template-columns: auto auto;
+grid-template-rows: auto auto;
+}
+
+.backup-bottom {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 3em;
+  
+}
+
+.backup-status {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+.backup-filepaths-elements {
+  grid-column: 1 / span 2;
+  grid-row: 1 / 2;
+}
+
+.backup-status-elements {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.backup-notifications {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.snapshot-section {
+  display: grid;
+/* grid-template-columns: 3fr 2fr; */
+grid-template-columns: auto auto;
+grid-template-rows: auto auto;
+}
+
+.snapshot-upper {
+  grid-column: 1 / span 2;
+  grid-row: 1 / 2;
+}
+
+.hotkey {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+.snapshot-bottom {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.snapshot-notifications {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.profile-section {
+  display: flex;
+  gap: 2em;
+}
+
+.profile-buttons {
+  display: flex;
+  gap: 1em;
 }

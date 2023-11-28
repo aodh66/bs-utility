@@ -1,7 +1,7 @@
 // ! Placeholder
 // ? DELETE
-const information = document.getElementById("info");
-information.innerText = `This app is using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;
+// const information = document.getElementById("info");
+// information.innerText = `This app is using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;
 
 // * ==============================
 // * HTML Elements
@@ -28,9 +28,6 @@ const snapshotPathElement = document.getElementById("snapshotSavePath");
 const snapshotMessageElement = document.getElementById("snapshotMessage");
 const snapshotHotkeyElement = document.getElementById("snapshot-hotkey-box");
 const snapshotHotkeyBtn = document.getElementById("snapshotHotkeyBtn");
-const snapshotHotkeyMessageElement = document.getElementById(
-  "snapshotHotkeyMessage"
-);
 const snapshotBtn = document.getElementById("snapshotBtn");
 const snapshotName = document.getElementById("snapshot-name-box");
 // Profile Elements
@@ -447,9 +444,9 @@ async function handler(event) {
     snapshotHotkeyElement.value
   );
   if (status === true) {
-    snapshotHotkeyMessageElement.innerText = `${snapshotHotkeyElement.value} Hotkey Registered`;
+    snapshotMessageElement.innerText = `${snapshotHotkeyElement.value} Hotkey Registered`;
   } else {
-    snapshotHotkeyMessageElement.innerText = `Error Registering Hotkey`;
+    snapshotMessageElement.innerText = `Error Registering Hotkey`;
   }
 }
 // Call the hotkey save function on window load, so hotkey is active immediately
