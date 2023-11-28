@@ -17,7 +17,7 @@ const fs = require("node:fs");
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
-    height: 950,
+    height: 910,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       enableRemoteModule: true,
