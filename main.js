@@ -67,11 +67,6 @@ const createWindow = () => {
       return;
     }
 
-    // ! ======================================================================================
-    // ! DISABLE FOR UI TESTING
-    // ! ======================================================================================
-    // return backupParams;
-
     // Filesystem method and function to copy files from folderPath to savePath recursively
     // Returns nothing directly, can call the Main to Renderer message function mainResponse
     // to return a value, or can just return its params to more simply do the same thing
@@ -79,12 +74,8 @@ const createWindow = () => {
       if (err) {
         throw err;
       }
-      // ! Message way to return true
-      // win.webContents.send('mainResponse', true)
     });
-    // ! Simple way to return true
     return backupParams;
-    // ! ======================================================================================
   });
 
   // * Function to save a snapshot (manual backup instance) of a folder with a custom name
@@ -105,11 +96,6 @@ const createWindow = () => {
       return;
     }
 
-    // ! ======================================================================================
-    // ! DISABLE FOR UI TESTING
-    // ! ======================================================================================
-    // return true;
-
     // Filesystem method and function to copy files from backupPath to savePath recursively
     // Returns nothing directly, can call the Main to Renderer message function mainResponse
     // to return a value, or can just return true to more simply do the same thing
@@ -119,7 +105,6 @@ const createWindow = () => {
       }
     });
     return true;
-    // ! ======================================================================================
   });
 
   // * Function to set a hotkey that calls for snapshot Param data from renderer
@@ -157,13 +142,6 @@ const createWindow = () => {
       return;
     }
 
-    // ! ======================================================================================
-    // ! DISABLE FOR UI TESTING
-    // ! ======================================================================================
-    // return value;
-    // win.webContents.send("mainResponse", true);
-    // return;
-
     // Filesystem method and function to copy files from backupPath to savePath recursively
     // Returns nothing directly, calls the Main to Renderer message function mainResponse
     // to return true
@@ -178,7 +156,6 @@ const createWindow = () => {
         console.log(err);
       }
     });
-    // ! ======================================================================================
   });
 
   // * Config file saving and loading
@@ -228,12 +205,6 @@ const createWindow = () => {
     // Returns the profile data
     return profileDataToLoad;
   });
-
-  // ! ======================================================================================
-  // ! TEST SECTION
-  // ! ======================================================================================
-
-  // ! ======================================================================================
 
   // * =================================
   // * Loads the index.html
