@@ -21,6 +21,9 @@ The intent of this project is to be lightweight and simple. Despite the tongue i
 - Cross platform compatibility/mac and linux versions
 
 ## Installation
+For normal people, you can just download the packaged and ready to go files [from here](https://www.mediafire.com/file/28kzf4pusnw4q5k/bs-utility.7z/file). Unzip the folder with 7zip, place it wherever you want, and launch bs-utility.exe.
+
+If you want to compile it yourself for some ungodly reason you can clone this repo, `npm i` as usual, and then run `npm run make` to build to the \out folder. If you want a version with all of my testing notes removed, that exists in the 'staging' branch.
 
 ## Usage Instructions
 There are multiple functions that the utility can perform. Rolling Backups, Snapshots (A single instance of a backup) and Profile saving.
