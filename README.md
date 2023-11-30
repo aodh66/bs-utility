@@ -3,7 +3,9 @@ A.K.A the Backup & Save Utility
 
 This is a simple utility to save and snapshot a folder. The original intent was to make something to back up Dark Souls or other Fromsoftware game saves, before realising that it had the potential to do more, and technically back up any folder, not just game saves.
 
-The intent of this project is to be lightweight and simple. Despite the tongue in cheek name of bs-utility, I am not a fan of bs, and I want to keep this project simple and streamlined, for the best user experience.
+This was also a project to help me get some experience with Electron. Despite the tongue in cheek name of bs-utility, I am not a fan of bs, and I want to keep this project simple and streamlined, for the best user experience.
+
+![alt text](https://github.com/aodh66/bs-utility/blob/main/bs-utility-image.webp?raw=true)
 
 ## Intended Features
 
