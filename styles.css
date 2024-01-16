@@ -1,29 +1,32 @@
 :root {
-  --bg-color: #3b3d41;
-  --main-color: #e2b714;
-  --caret-color: #e2b714;
-  --sub-color: #646669;
-  --sub-alt-color: #2c2e31;
-  --dark-color: rgb(34, 34, 34);
-  --text-color: #d1d0c5;
-  --orange: rgb(255, 145, 0);
-  --highlight: rgb(9, 206, 206);
-  --green-light: rgb(7, 201, 7);
-  --red-light: rgb(238, 4, 4);
-  --error-color: #ca4754;
-  --error-extra-color: #7e2a33;
-  --colorful-error-color: #ca4754;
-  --colorful-error-extra-color: #7e2a33;
+  --bg-color: hsl(220, 5%, 24%);
+  --main-color: hsl(47, 84%, 48%);
+  --caret-color: hsl(47, 84%, 48%);
+  --sub-color: hsl(216, 2%, 40%);
+  --sub-alt-color: hsl(216, 5%, 18%);
+  --dark-color: hsl(0, 0%, 13%);
+  --text-color: hsl(55, 12%, 80%);
+  --orange: hsl(34, 100%, 50%);
+  --highlight: hsl(180, 92%, 42%);
+  --green-light: hsl(120, 93%, 41%);
+  --red-light: hsl(0, 97%, 47%);
+  --error-color: hsl(354, 55%, 54%);
+  --colorful-error-color: hsl(354, 55%, 54%);
+  --colorful-error-extra-color: hsl(354, 50%, 33%);
+  --error-extra-color: hsla(354, 100%, 21%, 0.5);
+  
+  --translucent-black: hsla(0, 0%, 0%, 0.5);
+  --blue-background-gradient: linear-gradient(135deg, hsl(242, 100%, 7%) 0%, hsl(234, 100%, 16%) 59%, hsl(241, 100%, 33%) 100%);
+  --exit-button-gradient: linear-gradient(135deg, hsl(0, 100%, 34%) 0%, hsl(0, 100%, 22%) 62%, hsl(0, 100%, 21%) 100%);
+  --button-color-gradient: linear-gradient(171deg, hsl(187, 100%, 21%) 0%, hsl(219, 100%, 21%) 59%, hsl(242, 100%, 22%) 100%);
 }
 
 header {
   display: flex;
   justify-content: space-between;
   -webkit-app-region: drag;
-  background-color: var(--dark-color);
   padding: 0.5em;
   z-index: -1;
-  box-shadow: 0px 0px 30px 30px var(--dark-color);
 }
 
 .header-title {
@@ -31,7 +34,8 @@ header {
 }
 
 body {
-  background: var(--sub-alt-color);
+  background: hsl(0, 0%, 0%);
+background: var(--blue-background-gradient);
   color: var(--text-color);
   font-family: sans-serif;
 }
@@ -40,8 +44,8 @@ body {
   border-radius: 0.5em;
   padding: 0.5em 0.75em;
   margin: 0 0.5em 0.5em 0.5em;
-  background: var(--bg-color);
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.534);
+  background: var(--translucent-black);
+  box-shadow: 1px 1px 5px hsla(0, 0%, 0%, 0.534);
 }
 
 .errorsection {
@@ -54,21 +58,23 @@ body {
 
 .button {
   padding: 0.5em;
-  background: var(--sub-alt-color);
+  background: hsl(187, 100%, 21%);
+  background: var(--button-color-gradient);
   color: var(--text-color);
   border-radius: 0.25em;
   border: transparent;
   font-size: 1em;
   font-weight: 600;
-  box-shadow: 1px 1px 5px black;
+  box-shadow: 1px 1px 5px hsl(0, 0%, 0%);
   max-height: 3em;
 }
 
 .exit-button {
-  background-color: var(--colorful-error-extra-color);
   padding: 0.25em 0.5em;
   max-height: 2em;
   -webkit-app-region: no-drag;
+  background: hsl(0, 100%, 34%);
+background: var(--exit-button-gradient)
 }
 
 .backup-light {
@@ -91,8 +97,9 @@ body {
   color: var(--text-color);
   font-weight: 600;
   border: var(--sub-alt-color) solid 2px;
-  padding: 1px;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.534);
+  border-radius: 1em;
+  padding: 1px 5px;
+  box-shadow: 1px 1px 5px hsla(0, 0%, 0%, 0.534);
 }
 
 .input:focus {
