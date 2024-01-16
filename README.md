@@ -5,7 +5,7 @@ This is a simple utility to save and snapshot a folder. The original intent was 
 
 This was also a project to help me get some experience with Electron. Despite the tongue in cheek name of bs-utility, I am not a fan of bs, and I want to keep this project simple and streamlined, for the best user experience.
 
-![alt text](https://github.com/aodh66/bs-utility/blob/main/images/bs-utility-image.webp?raw=true)
+![alt text](https://github.com/aodh66/bs-utility/blob/main/images/bs-utility.png?raw=true)
 
 ## Intended Features
 

@@ -14,16 +14,21 @@
   --error-extra-color: #7e2a33;
   --colorful-error-color: #ca4754;
   --colorful-error-extra-color: #7e2a33;
+  
+  --translucent-black: hsla(0, 0%, 0%, 0.5);
+  --blue-background-gradient: linear-gradient(135deg, rgba(1,0,34,1) 0%, rgba(0,9,84,1) 59%, rgba(4,0,168,1) 100%);
+  --exit-button: linear-gradient(135deg, rgba(172,0,0,1) 0%, rgba(113,0,0,1) 62%, rgba(64,0,0,1) 100%);
+  --error-extra-color: hsla(354, 100%, 21%, 0.5);
 }
 
 header {
   display: flex;
   justify-content: space-between;
   -webkit-app-region: drag;
-  background-color: var(--dark-color);
+  /* background-color: var(--dark-color); */
   padding: 0.5em;
   z-index: -1;
-  box-shadow: 0px 0px 30px 30px var(--dark-color);
+  /* box-shadow: 0px 0px 30px 30px var(--dark-color); */
 }
 
 .header-title {
@@ -31,7 +36,9 @@ header {
 }
 
 body {
-  background: var(--sub-alt-color);
+  /* background: var(--sub-alt-color); */
+  background: rgb(0,0,0);
+background: var(--blue-background-gradient);
   color: var(--text-color);
   font-family: sans-serif;
 }
@@ -40,7 +47,8 @@ body {
   border-radius: 0.5em;
   padding: 0.5em 0.75em;
   margin: 0 0.5em 0.5em 0.5em;
-  background: var(--bg-color);
+  /* background: var(--bg-color); */
+  background: var(--translucent-black);
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.534);
 }
 
@@ -55,6 +63,8 @@ body {
 .button {
   padding: 0.5em;
   background: var(--sub-alt-color);
+  background: rgb(0,92,105);
+background: linear-gradient(171deg, rgba(0,92,105,1) 0%, rgba(0,37,107,1) 59%, rgba(3,0,111,1) 100%);
   color: var(--text-color);
   border-radius: 0.25em;
   border: transparent;
@@ -65,10 +75,12 @@ body {
 }
 
 .exit-button {
-  background-color: var(--colorful-error-extra-color);
+  /* background-color: var(--colorful-error-extra-color); */
   padding: 0.25em 0.5em;
   max-height: 2em;
   -webkit-app-region: no-drag;
+  background: rgb(172,0,0);
+background: var(--exit-button)
 }
 
 .backup-light {
@@ -91,7 +103,8 @@ body {
   color: var(--text-color);
   font-weight: 600;
   border: var(--sub-alt-color) solid 2px;
-  padding: 1px;
+  border-radius: 1em;
+  padding: 1px 5px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.534);
 }
 
