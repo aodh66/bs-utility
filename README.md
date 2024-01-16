@@ -21,7 +21,7 @@ This was also a project to help me get some experience with Electron. Despite th
 - Cross platform compatibility/mac and linux versions
 
 ## Installation
-For normal people, you can just download the packaged and ready to go files [from here](https://www.mediafire.com/file/28kzf4pusnw4q5k/bs-utility.7z/file) (give me a shout if the link has died and I can replace it). Unzip the folder with 7zip, place it wherever you want, and launch bs-utility.exe.
+For normal people, you can just download the packaged and ready to go files [from here](https://www.mediafire.com/file/zxxizqeg7edrt14/bs-utility-win32-x64.7z/file) (give me a shout if the link has died and I can replace it). Unzip the folder with 7zip, place it wherever you want, and launch bs-utility.exe.
 
 If you want to compile it yourself you can clone this repo, open in your code editor of choice if you want to look at anything, `npm i` in your terminal as usual to get the packages, and then use `npm run make` to build to the \out folder. If you want a version with all of my testing notes removed, that exists in the 'staging' branch. NOTE: If you do this and compile yourself, you will need to make a folder called 'profiles' in the same directory as bs-utility.exe so it has somewhere to save your profiles to.
 
