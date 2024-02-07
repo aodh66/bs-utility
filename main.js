@@ -24,6 +24,7 @@ const createWindow = () => {
     },
     frame: false,
     // transparent: true,
+    icon: './icon/save.png',
   });
 
   // * =================================
