@@ -7,6 +7,7 @@ const {
   dialog,
   ipcMain,
   globalShortcut,
+  // Tray,
 } = require("electron");
 const path = require("node:path");
 const fs = require("node:fs");
@@ -15,6 +16,7 @@ const fs = require("node:fs");
 // * Create Main Program Window
 // * =================================
 const createWindow = () => {
+  // const appIcon = new Tray('./icon/save.png')
   const win = new BrowserWindow({
     width: 800,
     height: 860,
@@ -24,6 +26,7 @@ const createWindow = () => {
     },
     frame: false,
     // transparent: true,
+    icon: './icon/save.png',
   });
 
   // * =================================
