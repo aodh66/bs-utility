@@ -5,6 +5,7 @@ todo.txt
 !profiles
 profiles/*
 !profiles/defaultProfile.json
+out/
 
 # Logs
 logs
