@@ -53,3 +53,5 @@ NOTE: When you click 'Register Hotkey', it will unregister any hotkeys you alrea
 Once you have configured all of the parameters to your liking, at any point you can enter a name and save a profile. This will save the data of every input field in the app. You can then load that profile by typing its name into the 'Profile name' field, and clicking 'Load Profile'. When a profile is saved or loaded, '<profile name> Profile Saved/Loaded' will be displayed.
 
 NOTE: The app will save the last loaded profile whenever a profile is saved or loaded, so when you next open the app, it will pick up where you left off, unless you did not want to save your setup.
+
+*Icon courtesy of Stockio.com*
