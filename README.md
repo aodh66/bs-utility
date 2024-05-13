@@ -13,7 +13,7 @@ This was also a project to help me get some experience with Electron. Despite th
 - Choose how many backups they want to keep, and how often they want to back up.
 - Choose when to start and stop the backup.
 - Allow the user to snapshot their save folder to a folder of their choosing.
-  - This is a manual backup, intended for use before you fight a boss for the first time. This lets the user can go back and experience the bossfight more easily than doing an entire new or NG+ playthrough. It also lets them attempt the fight again with their original character, rather than a more optimised character on a new playthrough based on their knowledge of the first one.
+  - This is a manual backup, intended for use before you fight a boss for the first time. This lets the user go back and experience a bossfight more easily than doing an entire new or NG+ playthrough. It also lets them attempt the fight again with their original character, rather than a more optimised character on a new playthrough based on their knowledge of the first one.
 - Choose a hotkey to save a snapshot from ingame, without tabbing out to the utility.
 - Name the snapshot to keep track of the gamestate at the time.
 - Save the current configuration to a profile, that can be loaded later, to manage multiple games or use cases.
@@ -25,7 +25,7 @@ This was also a project to help me get some experience with Electron. Despite th
 ## Installation
 For normal people, you can just download the packaged and ready to go files [from here](https://www.mediafire.com/file/2mvd1n7zok0ss24/Backup_%2526_Save_Utility.7z/file) (give me a shout if the link has died and I can replace it). Unzip the folder with 7zip, place it wherever you want, and launch bs-utility.exe.
 
-If you want to compile it yourself you can clone this repo, open in your code editor of choice if you want to look at anything, `npm i` in your terminal as usual to get the packages, and then use `npm run make` to build to the \out folder. If you want a version with all of my testing notes removed, that exists in the 'staging' branch. NOTE: If you do this and compile yourself, you will need to make a folder called 'profiles' in the same directory as bs-utility.exe so it has somewhere to save your profiles to, an well as transferring over the icons folder.
+If you want to compile it yourself you can clone this repo, open in your code editor of choice if you want to look at anything, `npm i` in your terminal as usual to get the packages, and then use `npm run make` to build to the \out folder. If you want a version with all of my testing notes removed, that exists in the 'staging' branch. NOTE: If you do this and compile yourself, you will need to make a folder called 'profiles' in the same directory as bs-utility.exe so it has somewhere to save your profiles to, as well as transferring over the icons folder.
 
 ## Usage Instructions
 There are multiple functions that the utility can perform. Rolling Backups, Snapshots (A single instance of a backup) and Profile saving.
@@ -50,6 +50,6 @@ To designate a hotkey type the key into the hotkey box and press the 'Register H
 NOTE: When you click 'Register Hotkey', it will unregister any hotkeys you already have saved.
 
 ### Profiles
-Once you have configured all of the parameters to your liking, at any point you can enter a name and save a profile. This will save the data of every input field in the app, including the windows dialogues that pop up so you can choose a folder path. You can then load that profile by typing its name into the 'Profile name' field, and clicking 'Load Profile'. When a profile is saved or loaded, '<profile name> Profile Saved/Loaded' will be displayed.
+Once you have configured all of the parameters to your liking, at any point you can enter a name and save a profile. This will save the data of every input field in the app. You can then load that profile by typing its name into the 'Profile name' field, and clicking 'Load Profile'. When a profile is saved or loaded, '<profile name> Profile Saved/Loaded' will be displayed.
 
 NOTE: The app will save the last loaded profile whenever a profile is saved or loaded, so when you next open the app, it will pick up where you left off, unless you did not want to save your setup.
